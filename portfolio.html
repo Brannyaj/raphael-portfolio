@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Raphael</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg?v=3">
+    <link rel="apple-touch-icon" href="favicon.svg?v=3">
+    <link rel="shortcut icon" type="image/svg+xml" href="favicon.svg?v=3">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Raphael</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="portfolio.html" class="nav-link active">Portfolio</a>
+                <a href="skills.html" class="nav-link">Skills</a>
+                <a href="pricing.html" class="nav-link">Pricing</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="about.html" class="nav-link">About</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <h2>My Portfolio</h2>
+                <p>Some of my recent projects</p>
+            </div>
+            <div class="portfolio-notice">
+                <p><strong>200+ Projects Completed</strong> – Throughout my 15+ year career, I have successfully delivered over 200 projects across various industries and platforms. Due to non-disclosure agreements (NDAs) with enterprise clients and strategic partners, I am unable to publicly showcase the majority of these works. The projects displayed here represent a curated selection of publicly available work that demonstrates my technical capabilities and diverse expertise.</p>
+            </div>
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="web">Website</button>
+                <button class="filter-btn" data-filter="mobile">Mobile Apps</button>
+                <button class="filter-btn" data-filter="ai">AI Integration</button>
+                <button class="filter-btn" data-filter="blockchain">Blockchain</button>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-image">
+                        <img src="assets/portfolio/website/10800AC6-B891-40B9-BC72-3831E2338678.png" alt="Mercurio Fashion E-Commerce">
+                        <div class="portfolio-overlay">
+                            <a href="https://www.mercurio-shop.it/" target="_blank" class="portfolio-link" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Mercurio Fashion E-Commerce</h3>
+                        <p>Complete Italian fashion retail platform featuring dynamic product catalog, secure checkout system, customer accounts, user reviews, and newsletter integration. Fully responsive design optimized for seamless shopping experience across all devices.</p>
+                        <a href="https://www.mercurio-shop.it/" target="_blank" class="btn btn-primary" rel="noopener noreferrer">Visit Website <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-image">
+                        <img src="assets/portfolio/website/8F4DE3B9-0CE9-4715-93FC-C063F3422B12.png" alt="Nomad Supply Company">
+                        <div class="portfolio-overlay">
+                            <a href="https://shopnomadsupply.com" target="_blank" class="portfolio-link" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Nomad Supply Company</h3>
+                        <p>Multi-category lifestyle e-commerce platform specializing in skateboard, surf, and lifestyle products. Features comprehensive product catalog with sale management, gift card system, event booking, blog integration, and member rewards program. Mobile-optimized shopping experience with advanced filtering and search capabilities.</p>
+                        <a href="https://shopnomadsupply.com" target="_blank" class="btn btn-primary" rel="noopener noreferrer">Visit Website <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-image">
+                        <img src="assets/portfolio/website/75BAE009-7E5D-453A-8072-72822CB2AF98.png" alt="Echo Echo Studio">
+                        <div class="portfolio-overlay">
+                            <a href="https://echoechostudio.com" target="_blank" class="portfolio-link" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Echo Echo Studio</h3>
+                        <p>Full-service creative studio platform with integrated e-commerce, portfolio showcase, and content management. Features video tutorials, blog system, custom design services, production portfolio, and studio picks. Comprehensive media production hub with client work showcase including VFX, animation, and video series production for major brands.</p>
+                        <a href="https://echoechostudio.com" target="_blank" class="btn btn-primary" rel="noopener noreferrer">Visit Website <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-image">
+                        <img src="assets/portfolio/website/F4364BE6-6A03-41FD-9468-8D55C799AEA3.png" alt="Jatina Group Miami Villa Rentals">
+                        <div class="portfolio-overlay">
+                            <a href="https://jatinagroup.com/miami-villa-rentals" target="_blank" class="portfolio-link" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Jatina Group Miami Villa Rentals</h3>
+                        <p>Luxury property rental platform featuring 36+ Miami villas and mansions. Advanced booking system with date search, property filtering by neighborhood, real-time availability, rate management, and concierge services integration. Includes property management dashboard, guest services portal, and comprehensive booking workflow with secure payment processing.</p>
+                        <a href="https://jatinagroup.com/miami-villa-rentals" target="_blank" class="btn btn-primary" rel="noopener noreferrer">Visit Website <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-image">
+                        <img src="assets/portfolio/website/5906577F-C6B2-46E3-9BE8-044748AAA74F.png" alt="Villa Pads Luxury Rentals">
+                        <div class="portfolio-overlay">
+                            <a href="https://villapads.com" target="_blank" class="portfolio-link" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Villa Pads Luxury Rentals</h3>
+                        <p>International luxury villa rental platform with 120+ properties across 8 destinations worldwide. Multi-location booking system with advanced search filters, travel partner portal, luxury travel blog, client testimonial management, and full-service concierge integration. Features personalized trip designer dashboard, property inspection tracking, and 24/7 client care system.</p>
+                        <a href="https://villapads.com" target="_blank" class="btn btn-primary" rel="noopener noreferrer">Visit Website <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-image">
+                        <img src="assets/portfolio/website/D6CCC60B-A65D-4BB1-9167-1CC6A22899DC.png" alt="Dora Financial">
+                        <div class="portfolio-overlay">
+                            <a href="https://dorafi.com" target="_blank" class="portfolio-link" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Dora Financial</h3>
+                        <p>Modern fintech banking platform offering free current accounts with Visa debit cards and zero minimum balance requirements. Features secure mobile banking app with real-time account management, cash deposit functionality, transaction tracking, and integrated financial tools. Built with enterprise-grade security and regulatory compliance for seamless digital banking experience.</p>
+                        <a href="https://dorafi.com" target="_blank" class="btn btn-primary" rel="noopener noreferrer">Visit Website <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-image">
+                        <img src="assets/portfolio/website/57D998EA-6896-459E-9A72-981ECCB9ED3C.png" alt="Civic Goods Co.">
+                        <div class="portfolio-overlay">
+                            <a href="https://www.civicgoodsco.com" target="_blank" class="portfolio-link" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Civic Goods Co.</h3>
+                        <p>Mission-driven e-commerce platform for activism apparel and goods with social impact integration. Features product catalog with multiple variants, multi-currency international checkout system, blog and resources hub, limited edition drops, email newsletter management, and automated donation allocation to ACLU. Built with social commerce tools and content marketing integration.</p>
+                        <a href="https://www.civicgoodsco.com" target="_blank" class="btn btn-primary" rel="noopener noreferrer">Visit Website <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-image">
+                        <img src="assets/portfolio/website/B1C5BD5F-AE07-42B1-ACFE-F5DEF466B94C.png" alt="Form Furniture">
+                        <div class="portfolio-overlay">
+                            <a href="https://form-furniture.com" target="_blank" class="portfolio-link" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Form Furniture</h3>
+                        <p>Commercial furniture catalog platform specializing in office and workspace solutions. Features comprehensive product database with seating, tables, storage, and monitor arms. Includes resource library with CAD files, 3D models, Revit files, spec sheets, and technical documentation. Integrated dealer locator system and quote management for B2B operations.</p>
+                        <a href="https://form-furniture.com" target="_blank" class="btn btn-primary" rel="noopener noreferrer">Visit Website <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-image">
+                        <img src="assets/portfolio/website/1FF7B8A2-56A2-44C9-8F26-6415B5D683BB.png" alt="Logic Official Merch">
+                        <div class="portfolio-overlay">
+                            <a href="https://www.logicmerch.com" target="_blank" class="portfolio-link" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Logic Official Merch</h3>
+                        <p>Artist merchandise e-commerce platform for Grammy-nominated rapper Logic. Features album-based collections, apparel catalog with multiple variants, music store with vinyl and cassettes, multi-region store selection, and email marketing integration. Built with advanced inventory management, collection-based navigation, and seamless checkout for Warner-Elektra-Atlantic Corp.</p>
+                        <a href="https://www.logicmerch.com" target="_blank" class="btn btn-primary" rel="noopener noreferrer">Visit Website <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-image">
+                        <img src="assets/portfolio/website/C35DC808-8019-429E-8BF4-A29B4689472F.png" alt="Pantry Products">
+                        <div class="portfolio-overlay">
+                            <a href="https://shoppantryproducts.com/" target="_blank" class="portfolio-link" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Pantry Products</h3>
+                        <p>Natural wellness and personal care e-commerce platform with handcrafted, small-batch products. Features subscription service, wishlist functionality, seasonal collections, blog integration, events and workshops calendar, store locator for retail partners, and wholesale partnership portal. Built with eco-friendly product focus, multi-category catalog, and customer account management.</p>
+                        <a href="https://shoppantryproducts.com/" target="_blank" class="btn btn-primary" rel="noopener noreferrer">Visit Website <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="mobile">
+                    <div class="portfolio-image">
+                        <img src="assets/portfolio/mobile-apps/8C2218B3-6D0C-4747-979B-3ED35905E142.jpeg" alt="Dora Mobile Banking">
+                        <div class="portfolio-overlay">
+                            <a href="https://apps.apple.com/us/app/dora-mobile-banking/id1528758595" target="_blank" class="portfolio-link" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Dora Mobile Banking</h3>
+                        <p>Cross-platform bilingual mobile banking application with comprehensive financial management features. Includes account opening with multiple ID types, instant fund transfers, mobile check deposit, bill payment system, early direct deposit, ATM locator with 30,000+ fee-free locations, and personalized financial coaching. Built with biometric authentication, 2FA security, and real-time card freeze functionality.</p>
+                        <div class="app-store-buttons">
+                            <a href="https://apps.apple.com/us/app/dora-mobile-banking/id1528758595" target="_blank" class="app-store-btn" rel="noopener noreferrer">
+                                <i class="fab fa-apple"></i>
+                                <span>App Store</span>
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=io.bankingon.dora" target="_blank" class="app-store-btn" rel="noopener noreferrer">
+                                <i class="fab fa-google-play"></i>
+                                <span>Google Play</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="mobile">
+                    <div class="portfolio-image">
+                        <img src="assets/portfolio/mobile-apps/85FC7BA7-5246-4670-AE89-8916CC93CE22.jpeg" alt="OurPlace Smart App">
+                        <div class="portfolio-overlay">
+                            <a href="https://apps.apple.com/us/app/ourplace-smart-app/id6464438694" target="_blank" class="portfolio-link" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>OurPlace Smart App</h3>
+                        <p>Enterprise office management and workspace optimization application for BASF's Scale-Berlin facility. Features comprehensive resource booking system for desks, meeting rooms, and event spaces. Includes indoor navigation with wayfinding, incident reporting system, facility information hub, and real-time availability tracking. Built with location services integration and multi-language support for global workforce.</p>
+                        <div class="app-store-buttons">
+                            <a href="https://apps.apple.com/us/app/ourplace-smart-app/id6464438694" target="_blank" class="app-store-btn" rel="noopener noreferrer">
+                                <i class="fab fa-apple"></i>
+                                <span>App Store</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="mobile">
+                    <div class="portfolio-image">
+                        <img src="assets/portfolio/mobile-apps/B698BBFF-E4CA-47D0-89BB-11C9C17816A0.jpeg" alt="FloatMe: Online Cash Advance">
+                        <div class="portfolio-overlay">
+                            <a href="https://apps.apple.com/us/app/floatme-online-cash-advance/id1395667279" target="_blank" class="portfolio-link" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>FloatMe: Online Cash Advance</h3>
+                        <p>Financial wellness and cash advance mobile application with 118K+ users and 4.8-star rating. Features instant cash advance system (Floats), smart budget management tools, cash flow calendar with projected balance calculations, low balance alerts, and marketplace offers integration. Built with Plaid secure banking integration supporting 10,000+ institutions, instant and ACH transfer options, and subscription-based membership model.</p>
+                        <div class="app-store-buttons">
+                            <a href="https://apps.apple.com/us/app/floatme-online-cash-advance/id1395667279" target="_blank" class="app-store-btn" rel="noopener noreferrer">
+                                <i class="fab fa-apple"></i>
+                                <span>App Store</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="mobile">
+                    <div class="portfolio-image">
+                        <img src="assets/portfolio/mobile-apps/E3351248-072C-4CB2-9172-0B3D2F4D3346.jpeg" alt="Gerald - Cash Advance">
+                        <div class="portfolio-overlay">
+                            <a href="https://apps.apple.com/us/app/gerald-cash-advance/id1569801600" target="_blank" class="portfolio-link" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Gerald - Cash Advance</h3>
+                        <p>Financial technology and e-commerce hybrid application with 18.6K+ users and 4.3-star rating. Features Buy Now Pay Later system integrated with Gerald's Cornerstore, instant free cash advance transfers, mobile phone plan financing through Cranberry Mobile, store rewards program, and Play-to-Earn gamification. Built with no credit checks, zero interest rates (0% APR), employment validation system, and flexible repayment structure.</p>
+                        <div class="app-store-buttons">
+                            <a href="https://apps.apple.com/us/app/gerald-cash-advance/id1569801600" target="_blank" class="app-store-btn" rel="noopener noreferrer">
+                                <i class="fab fa-apple"></i>
+                                <span>App Store</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="mobile">
+                    <div class="portfolio-image">
+                        <img src="assets/portfolio/mobile-apps/4600AD8D-F437-4B6A-974D-5571BF791742.jpeg" alt="MYIO Behavioral Health Portal">
+                        <div class="portfolio-overlay">
+                            <a href="https://apps.apple.com/us/app/myio/id1618901898" target="_blank" class="portfolio-link" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>MYIO Behavioral Health Portal</h3>
+                        <p>Cross-platform healthcare patient portal application by Valant Medical Solutions with 5.7K+ users and 4.7-star rating. Features secure behavioral health information management, personal details and contact updates, communication preferences configuration, statement review system, integrated payment processing, and push notifications for appointment reminders. Built with HIPAA-compliant security, SMS-based authentication, biometric login support, and telehealth video consultation capabilities.</p>
+                        <div class="app-store-buttons">
+                            <a href="https://apps.apple.com/us/app/myio/id1618901898" target="_blank" class="app-store-btn" rel="noopener noreferrer">
+                                <i class="fab fa-apple"></i>
+                                <span>App Store</span>
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.valant.mobileportal" target="_blank" class="app-store-btn" rel="noopener noreferrer">
+                                <i class="fab fa-google-play"></i>
+                                <span>Google Play</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="mobile">
+                    <div class="portfolio-image">
+                        <img src="assets/portfolio/mobile-apps/4A0248B1-DDF7-4C46-94D7-22042A09EA82.jpeg" alt="RealStaff">
+                        <div class="portfolio-overlay">
+                            <a href="https://apps.apple.com/us/app/realstaff/id1105634036" target="_blank" class="portfolio-link" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>RealStaff</h3>
+                        <p>Healthcare staffing and workforce management application with 20,000+ professionals and 3.6K+ users with 4.7-star rating. Features same-day payment system, shift marketplace with thousands of opportunities across 35+ states, credential storage and management, timesheet upload via camera, real-time shift notifications, and background location services for verification. Built with secure document management, 24/7 customer support, and instant pay processing 365 days a year.</p>
+                        <div class="app-store-buttons">
+                            <a href="https://apps.apple.com/us/app/realstaff/id1105634036" target="_blank" class="app-store-btn" rel="noopener noreferrer">
+                                <i class="fab fa-apple"></i>
+                                <span>App Store</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="mobile">
+                    <div class="portfolio-image">
+                        <img src="assets/portfolio/mobile-apps/1444A495-162D-42A7-8518-66DE952D3582.jpeg" alt="IntelyCare - Nursing Jobs">
+                        <div class="portfolio-overlay">
+                            <a href="https://apps.apple.com/us/app/intelycare-nursing-jobs/id978207612" target="_blank" class="portfolio-link" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>IntelyCare - Nursing Jobs</h3>
+                        <p>On-demand nursing staffing and per-diem job marketplace application with 1.2K+ users and 4.2-star rating. Features intelligent shift matching across long-term care, assisted living, skilled nursing, and hospice facilities. Includes custom schedule builder, competitive W2 employment with 25% higher pay, DailyPay integration, shift bonuses, quarterly sweepstakes, and 24/7 IntelyPro Champion support. Built for RNs, LPNs, CNAs, and travel nurses with healthcare benefits and 401(k) eligibility.</p>
+                        <div class="app-store-buttons">
+                            <a href="https://apps.apple.com/us/app/intelycare-nursing-jobs/id978207612" target="_blank" class="app-store-btn" rel="noopener noreferrer">
+                                <i class="fab fa-apple"></i>
+                                <span>App Store</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="mobile">
+                    <div class="portfolio-image">
+                        <img src="assets/portfolio/mobile-apps/10C2A96B-4D3F-4ADB-BE4E-C115803263F5.jpeg" alt="Garage: Clothes Shopping">
+                        <div class="portfolio-overlay">
+                            <a href="https://apps.apple.com/us/app/garage-clothes-shopping/id1243733345" target="_blank" class="portfolio-link" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Garage: Clothes Shopping</h3>
+                        <p>Fashion e-commerce and loyalty rewards application by Groupe Dynamite with 33.3K+ users and 4.9-star rating. Features curated clothing collections, Garage Collectif rewards program with tiered benefits, real-time order tracking, personalized wishlist, exclusive member perks including birthday gifts and early collection access. Built with secure checkout, push notifications for fashion events, point redemption system, and free shipping based on membership tiers.</p>
+                        <div class="app-store-buttons">
+                            <a href="https://apps.apple.com/us/app/garage-clothes-shopping/id1243733345" target="_blank" class="app-store-btn" rel="noopener noreferrer">
+                                <i class="fab fa-apple"></i>
+                                <span>App Store</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="mobile">
+                    <div class="portfolio-image">
+                        <img src="assets/portfolio/mobile-apps/3D5195C9-C67B-4320-9B8F-991C9C5F27C4.jpeg" alt="Princess Polly">
+                        <div class="portfolio-overlay">
+                            <a href="https://apps.apple.com/us/app/princess-polly/id1321227830" target="_blank" class="portfolio-link" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Princess Polly</h3>
+                        <p>Global fashion boutique e-commerce application with 9.9K+ users and 4.9-star rating. Features viral trend discovery, influencer edits, extended sizing options, eco-friendly fashion lines, and Buy Now Pay Later integration. Includes personalized wishlist, fast express shipping on orders over $50, 30-day returns, early access to exclusive launches, and instant push notifications for new collections. Built with quick checkout, multi-language support across 25+ languages, and rewards program.</p>
+                        <div class="app-store-buttons">
+                            <a href="https://apps.apple.com/us/app/princess-polly/id1321227830" target="_blank" class="app-store-btn" rel="noopener noreferrer">
+                                <i class="fab fa-apple"></i>
+                                <span>App Store</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="mobile">
+                    <div class="portfolio-image">
+                        <img src="assets/portfolio/mobile-apps/1736700B-C5FF-4AA5-8E36-AA9C409DC52E.jpeg" alt="Lucy in the Sky Store">
+                        <div class="portfolio-overlay">
+                            <a href="https://apps.apple.com/us/app/lucy-in-the-sky-store/id1555756455" target="_blank" class="portfolio-link" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Lucy in the Sky Store</h3>
+                        <p>Los Angeles-based fashion e-commerce application with 4.3K+ users and 4.6-star rating. Features real-time outfit inspiration videos, latest fashion drops, special occasion collections including homecoming and formal wear, and gift card system. Includes personalized shopping experience, wishlist functionality, tablet-optimized interface, and curated styling recommendations. Designed for trendy everyday looks and standout special events with Los Angeles fashion aesthetics.</p>
+                        <div class="app-store-buttons">
+                            <a href="https://apps.apple.com/us/app/lucy-in-the-sky-store/id1555756455" target="_blank" class="app-store-btn" rel="noopener noreferrer">
+                                <i class="fab fa-apple"></i>
+                                <span>App Store</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="ai">
+                    <div class="portfolio-image">
+                        <img src="assets/portfolio/ai-integration/AA1620EF-0DE3-405A-B799-712F31F3C432.png" alt="Manus AI Platform">
+                        <div class="portfolio-overlay">
+                            <a href="https://manus.im" target="_blank" class="portfolio-link" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Manus AI Platform</h3>
+                        <p>Advanced AI-powered productivity platform featuring intelligent document processing, spreadsheet automation, data visualization, and multi-modal AI capabilities. Integrates natural language processing for seamless content generation across images, slides, webpages, and complex data analysis. Built with enterprise-grade scalability, real-time collaboration features, and comprehensive API integrations for research, education, and business productivity workflows.</p>
+                        <a href="https://manus.im" target="_blank" class="btn" rel="noopener noreferrer">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span>Visit Website</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="ai">
+                    <div class="portfolio-image">
+                        <img src="assets/portfolio/ai-integration/A20EADCB-9957-4697-BF03-41794510EC82.png" alt="AFFiNE AI">
+                        <div class="portfolio-overlay">
+                            <a href="https://affine.pro/ai" target="_blank" class="portfolio-link" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>AFFiNE AI</h3>
+                        <p>Multimodal AI copilot for next-generation knowledge management and collaboration. Features AI-powered writing assistance with tone adjustment and grammar correction, intelligent mind-map generation, automated presentation creation from prompts, and visual content generation. Supports both Page Mode and Edgeless whiteboard collaboration with inline AI assistant, chat interface, and local workspace integration. Built with privacy-first architecture, unlimited usage for early adopters, and comprehensive canvas AI capabilities for smart note-taking.</p>
+                        <a href="https://affine.pro/ai" target="_blank" class="btn" rel="noopener noreferrer">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span>Visit Website</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="ai">
+                    <div class="portfolio-image">
+                        <img src="assets/portfolio/ai-integration/B632B580-B815-45D3-AFEA-B8828E0D7F70.png" alt="Flux AI">
+                        <div class="portfolio-overlay">
+                            <a href="https://flux-ai.io" target="_blank" class="portfolio-link" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Flux AI</h3>
+                        <p>Comprehensive AI creative suite powered by Black Forest Labs technology. Features advanced text-to-image generation with Flux.1 Kontext, Flux 1.1 Pro, and multiple specialized models. Includes AI video generation with text-to-video and image-to-video capabilities, plus 30+ creative tools: AI avatar generator, photo restoration, background removal, virtual try-on, image upscaling, and cartoon conversion. Supports professional workflows with photorealistic rendering, exceptional prompt adherence, ultra-HD output, and rapid generation for advertising, game development, and artistic projects.</p>
+                        <a href="https://flux-ai.io" target="_blank" class="btn" rel="noopener noreferrer">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span>Visit Website</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="ai">
+                    <div class="portfolio-image">
+                        <img src="assets/portfolio/ai-integration/E914FFFF-19FD-4867-BF92-632B4C9B336A.png" alt="fal AI">
+                        <div class="portfolio-overlay">
+                            <a href="https://fal.ai" target="_blank" class="portfolio-link" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>fal AI</h3>
+                        <p>Enterprise-scale generative media platform powering 1,000,000+ developers. Features 600+ production-ready models for image, video, audio, and 3D generation with fal Inference Engine™ delivering up to 10x faster performance. Includes serverless GPU infrastructure with on-demand access to thousands of H100, H200, and B200 VMs, scaling from zero to millions of daily inference calls with 99.99% uptime. SOC 2 compliant with private model endpoints, dedicated compute clusters for training and fine-tuning, and unified API supporting FLUX.1, Veo 3, Kling v2.5, and Wan 2.5. Trusted by Canva, Perplexity, Quora, and PlayAI for mission-critical AI workloads.</p>
+                        <a href="https://fal.ai" target="_blank" class="btn" rel="noopener noreferrer">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span>Visit Website</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="blockchain">
+                    <div class="portfolio-image">
+                        <img src="assets/portfolio/blockchain/ECF0503E-4A3B-436B-AA15-150F3391D9F6.png" alt="Best Wallet">
+                        <div class="portfolio-overlay">
+                            <a href="https://bestwallet.com/en/" target="_blank" class="portfolio-link" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Best Wallet</h3>
+                        <p>Comprehensive multi-chain cryptocurrency wallet supporting 60+ blockchains including Bitcoin, Ethereum, Solana, BNB Chain, and major L2 networks. Features non-custodial security with biometric authentication, built-in DEX aggregator for optimal swap rates, NFT marketplace integration, DeFi protocol access, and cross-chain bridge functionality. Includes real-time portfolio tracking, gas fee optimization, hardware wallet compatibility, WalletConnect support, and seamless dApp browser. Available on iOS and Android with 24/7 customer support and institutional-grade security architecture.</p>
+                        <a href="https://bestwallet.com/en/" target="_blank" class="btn" rel="noopener noreferrer">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span>Visit Website</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="blockchain">
+                    <div class="portfolio-image">
+                        <img src="assets/portfolio/blockchain/A316A59E-09BF-43FF-BDD7-E85610143796.png" alt="Sei Network">
+                        <div class="portfolio-overlay">
+                            <a href="https://www.sei.io" target="_blank" class="portfolio-link" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Sei Network</h3>
+                        <p>The fastest Layer 1 EVM blockchain with 400ms time to finality and 200,000+ transactions per second capacity. Features parallelized runtime architecture with 5 Giga Gas per second, processing 10,000 transactions for as low as $0.05. Battle-tested infrastructure optimized for high-frequency trading, DeFi protocols, and Web2-like experiences onchain. Includes developer toolkit, comprehensive documentation, and ecosystem hub. Backed by Coinbase Ventures, Circle, Jump Crypto, Multicoin Capital, GSR, and HRT. Sei Giga upgrade delivers breakthrough scalability with robust security at enterprise scale.</p>
+                        <a href="https://www.sei.io" target="_blank" class="btn" rel="noopener noreferrer">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span>Visit Website</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

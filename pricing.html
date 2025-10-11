@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing & Services - Raphael</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg?v=3">
+    <link rel="apple-touch-icon" href="favicon.svg?v=3">
+    <link rel="shortcut icon" type="image/svg+xml" href="favicon.svg?v=3">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Raphael</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="portfolio.html" class="nav-link">Portfolio</a>
+                <a href="skills.html" class="nav-link">Skills</a>
+                <a href="pricing.html" class="nav-link active">Pricing</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="about.html" class="nav-link">About</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Pricing Calculator</h2>
+                <p>Select a service to see estimated pricing</p>
+            </div>
+            
+            <!-- Pricing Calculator -->
+            <div class="pricing-calculator">
+                <div class="calculator-wrapper">
+                    <div class="calculator-form">
+                        <div class="form-group">
+                            <label for="service-type">Service Type</label>
+                            <select id="service-type" class="calculator-select">
+                                <option value="">-- Select Service --</option>
+                                <option value="website">Website Development</option>
+                                <option value="mobile">Mobile App</option>
+                                <option value="ai">AI Integration</option>
+                                <option value="blockchain">Blockchain Development</option>
+                                <option value="maintenance">Existing Platform Maintenance</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group" id="complexity-group" style="display: none;">
+                            <label for="complexity-level">Complexity Level</label>
+                            <select id="complexity-level" class="calculator-select">
+                                <option value="">-- Select Complexity --</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group" id="tier-group" style="display: none;">
+                            <label for="tier-level">Tier</label>
+                            <select id="tier-level" class="calculator-select">
+                                <option value="">-- Select Tier --</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="calculator-result" id="calculator-result" style="display: none;">
+                        <div class="result-content">
+                            <h4>Estimated Cost</h4>
+                            <div class="result-price" id="result-price">$0</div>
+                            <p class="result-description" id="result-description"></p>
+                            <div class="deposit-info" id="deposit-info">
+                                <p class="deposit-text" id="deposit-text">20% down deposit required as commitment</p>
+                                <p class="deposit-amount" id="deposit-amount"></p>
+                                <p class="remaining-amount" id="remaining-amount"></p>
+                            </div>
+                            <button class="btn btn-primary" id="get-started-btn">Get Started</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment & Project Details - Raphael</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg?v=3">
+    <link rel="apple-touch-icon" href="favicon.svg?v=3">
+    <link rel="shortcut icon" type="image/svg+xml" href="favicon.svg?v=3">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Raphael</a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="portfolio.html" class="nav-link">Portfolio</a>
+                <a href="skills.html" class="nav-link">Skills</a>
+                <a href="pricing.html" class="nav-link">Pricing</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="about.html" class="nav-link">About</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Payment Section -->
+    <section class="payment-section">
+        <div class="container">
+            <div class="payment-header">
+                <h2>Project Details & Payment</h2>
+                <p id="payment-header-text">Fill in your details below and pay the 20% deposit to get started. I'll follow up with you to discuss your project in detail.</p>
+            </div>
+
+            <div class="payment-content">
+                <!-- Project Summary -->
+                <div class="project-summary">
+                    <h3>Project Summary</h3>
+                    <div class="summary-details">
+                        <div class="summary-item">
+                            <span class="summary-label">Service:</span>
+                            <span class="summary-value" id="selected-service">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Complexity:</span>
+                            <span class="summary-value" id="selected-complexity">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Total Cost:</span>
+                            <span class="summary-value" id="display-total-cost">$0</span>
+                        </div>
+                        <div class="summary-item highlight">
+                            <span class="summary-label" id="deposit-label">20% Deposit:</span>
+                            <span class="summary-value" id="display-deposit-cost">$0</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Remaining Balance:</span>
+                            <span class="summary-value" id="display-remaining-cost">$0</span>
+                        </div>
+                        <p class="summary-note" id="summary-note">Remaining balance due upon project completion</p>
+                    </div>
+                </div>
+
+                <!-- Payment Form -->
+                <div class="payment-form-wrapper">
+                    <form id="payment-form">
+                        <h3>Your Information</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="client-name">Full Name *</label>
+                                <input type="text" id="client-name" name="client-name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="client-email">Email Address *</label>
+                                <input type="email" id="client-email" name="client-email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="client-phone">Phone Number *</label>
+                            <div class="phone-input-group">
+                                <select id="country-code" name="country-code" class="country-code-select" required>
+                                    <option value="+1">🇺🇸 +1</option>
+                                    <option value="+44">🇬🇧 +44</option>
+                                    <option value="+91">🇮🇳 +91</option>
+                                    <option value="+86">🇨🇳 +86</option>
+                                    <option value="+81">🇯🇵 +81</option>
+                                    <option value="+49">🇩🇪 +49</option>
+                                    <option value="+33">🇫🇷 +33</option>
+                                    <option value="+39">🇮🇹 +39</option>
+                                    <option value="+34">🇪🇸 +34</option>
+                                    <option value="+52">🇲🇽 +52</option>
+                                    <option value="+55">🇧🇷 +55</option>
+                                    <option value="+61">🇦🇺 +61</option>
+                                    <option value="+7">🇷🇺 +7</option>
+                                    <option value="+82">🇰🇷 +82</option>
+                                    <option value="+27">🇿🇦 +27</option>
+                                    <option value="+234">🇳🇬 +234</option>
+                                    <option value="+254">🇰🇪 +254</option>
+                                    <option value="+971">🇦🇪 +971</option>
+                                    <option value="+966">🇸🇦 +966</option>
+                                    <option value="+20">🇪🇬 +20</option>
+                                    <option value="+62">🇮🇩 +62</option>
+                                    <option value="+60">🇲🇾 +60</option>
+                                    <option value="+65">🇸🇬 +65</option>
+                                    <option value="+63">🇵🇭 +63</option>
+                                    <option value="+66">🇹🇭 +66</option>
+                                    <option value="+84">🇻🇳 +84</option>
+                                    <option value="+92">🇵🇰 +92</option>
+                                    <option value="+880">🇧🇩 +880</option>
+                                    <option value="+90">🇹🇷 +90</option>
+                                    <option value="+98">🇮🇷 +98</option>
+                                    <option value="+964">🇮🇶 +964</option>
+                                    <option value="+972">🇮🇱 +972</option>
+                                    <option value="+420">🇨🇿 +420</option>
+                                    <option value="+48">🇵🇱 +48</option>
+                                    <option value="+351">🇵🇹 +351</option>
+                                    <option value="+31">🇳🇱 +31</option>
+                                    <option value="+32">🇧🇪 +32</option>
+                                    <option value="+41">🇨🇭 +41</option>
+                                    <option value="+43">🇦🇹 +43</option>
+                                    <option value="+45">🇩🇰 +45</option>
+                                    <option value="+46">🇸🇪 +46</option>
+                                    <option value="+47">🇳🇴 +47</option>
+                                    <option value="+358">🇫🇮 +358</option>
+                                    <option value="+353">🇮🇪 +353</option>
+                                    <option value="+30">🇬🇷 +30</option>
+                                    <option value="+54">🇦🇷 +54</option>
+                                    <option value="+56">🇨🇱 +56</option>
+                                    <option value="+57">🇨🇴 +57</option>
+                                    <option value="+51">🇵🇪 +51</option>
+                                    <option value="+58">🇻🇪 +58</option>
+                                    <option value="+64">🇳🇿 +64</option>
+                                </select>
+                                <input type="tel" id="client-phone" name="client-phone" placeholder="123 456 7890" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="project-description">Project Description *</label>
+                            <textarea id="project-description" name="project-description" rows="5" placeholder="Describe what you need done exactly..." required></textarea>
+                        </div>
+                        
+                        <h3 class="payment-section-title">Payment Information</h3>
+                        
+                        <div class="payment-amount-display">
+                            <span>Amount due now:</span>
+                            <strong id="payment-amount-text">$0</strong>
+                        </div>
+                        
+                        <!-- Stripe Payment Element -->
+                        <div class="form-group">
+                            <div id="payment-element">
+                                <!-- Stripe.js will inject the Payment Element here -->
+                            </div>
+                        </div>
+                        
+                        <div id="payment-message" class="payment-message"></div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-submit" id="submit-payment">
+                                <span id="button-text">Pay Deposit & Submit Project</span>
+                                <div class="spinner hidden" id="spinner"></div>
+                            </button>
+                            
+                            <a href="pricing.html" class="btn btn-secondary">Back to Pricing</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
