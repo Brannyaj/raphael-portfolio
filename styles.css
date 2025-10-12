@@ -2181,19 +2181,19 @@ section:first-of-type {
 }
 
 .success-icon {
-    font-size: 5rem;
+    font-size: 4rem;
     color: #10b981;
     margin-bottom: 1.5rem;
 }
 
 .success-content h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: #1f2937;
     margin-bottom: 1rem;
 }
 
 .success-message {
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #6b7280;
     margin-bottom: 2.5rem;
 }
@@ -2204,7 +2204,7 @@ section:first-of-type {
 }
 
 .success-details h3 {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     color: #1f2937;
     margin-bottom: 1.5rem;
     text-align: center;
@@ -2224,8 +2224,8 @@ section:first-of-type {
 
 .step-number {
     flex-shrink: 0;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     background: #283444;
     color: white;
     border-radius: 50%;
@@ -2233,11 +2233,11 @@ section:first-of-type {
     align-items: center;
     justify-content: center;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .step-content h4 {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #1f2937;
     margin-bottom: 0.5rem;
 }
@@ -2245,6 +2245,7 @@ section:first-of-type {
 .step-content p {
     color: #6b7280;
     line-height: 1.6;
+    font-size: 0.95rem;
 }
 
 .success-actions {
@@ -2260,7 +2261,7 @@ section:first-of-type {
     }
     
     .success-content h1 {
-        font-size: 2rem;
+        font-size: 1.75rem;
     }
     
     .success-icon {
