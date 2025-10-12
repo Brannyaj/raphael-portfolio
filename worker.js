@@ -315,7 +315,6 @@ async function sendAdminNotification(metadata, amount, paymentIntentId, resendAp
             <p><strong>Name:</strong> ${metadata.name || 'N/A'}</p>
             <p><strong>Email:</strong> ${metadata.email || 'N/A'}</p>
             <p><strong>Phone:</strong> ${metadata.phone || 'N/A'}</p>
-            <p><strong>Company:</strong> ${metadata.company || 'Not provided'}</p>
           </div>
           
           <div class="info-box">

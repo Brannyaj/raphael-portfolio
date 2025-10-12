@@ -977,7 +977,6 @@ async function initializeStripePayment() {
         const customerPhone = document.getElementById('client-phone')?.value || '';
         const countryCode = document.getElementById('country-code')?.value || '';
         const projectDescription = document.getElementById('project-description')?.value || '';
-        const companyName = document.getElementById('company-name')?.value || '';
         
         // Create payment intent on your server and get clientSecret
         console.log('Fetching payment intent from server...');
@@ -991,7 +990,6 @@ async function initializeStripePayment() {
                     name: customerName,
                     email: customerEmail,
                     phone: `${countryCode} ${customerPhone}`,
-                    company: companyName,
                     service: window.currentProjectData.service,
                     complexity: window.currentProjectData.complexity,
                     tier: window.currentProjectData.tier || '',
