@@ -92,7 +92,7 @@ export default {
         let event;
 
         try {
-          event = stripe.webhooks.constructEvent(
+          event = await stripe.webhooks.constructEventAsync(
             body,
             signature,
             env.STRIPE_WEBHOOK_SECRET
