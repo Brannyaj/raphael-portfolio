@@ -206,6 +206,21 @@ body {
     transform: translateY(-2px);
 }
 
+/* Make Get Started button more prominent on pricing page */
+#get-started-btn {
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 1rem 2.5rem;
+    box-shadow: 0 4px 12px rgba(108, 128, 148, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#get-started-btn:hover {
+    box-shadow: 0 6px 16px rgba(108, 128, 148, 0.5);
+    transform: translateY(-3px);
+}
+
 .btn-secondary {
     background: transparent;
     border-color: white;
