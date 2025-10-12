@@ -116,7 +116,7 @@ body {
 
 /* Hero Section - Rotating Images */
 .hero {
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
     position: relative;
@@ -124,6 +124,19 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 120px 20px 80px;
+}
+
+/* Hero container - side by side layout */
+.hero-container {
+    max-width: 1400px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+    position: relative;
+    z-index: 30;
 }
 
 /* Background overlay */
@@ -134,7 +147,7 @@ body {
     right: 0;
     bottom: 0;
     background: rgba(0, 0, 0, 0.3);
-    z-index: 20;
+    z-index: 5;
     pointer-events: none;
 }
 
@@ -196,14 +209,12 @@ body {
 
 /* Rotating images container */
 .hero-images-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
     z-index: 10;
     width: 384px;
     height: 448px;
     pointer-events: none;
+    flex-shrink: 0;
 }
 
 .hero-image-card {
@@ -269,11 +280,12 @@ body {
 .hero-content-centered {
     position: relative;
     z-index: 30;
-    max-width: 896px;
+    max-width: 600px;
     width: 100%;
-    text-align: center;
+    text-align: left;
     padding: 0 16px;
     color: white;
+    margin-right: 4rem;
 }
 
 .hero-title {
@@ -307,7 +319,7 @@ body {
 .hero-buttons {
     display: flex;
     gap: 1rem;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .btn {
@@ -393,6 +405,14 @@ body {
 
 /* Responsive adjustments */
 @media (max-width: 1024px) {
+    .hero-container {
+        gap: 2rem;
+    }
+    
+    .hero-content-centered {
+        margin-right: 2rem;
+    }
+    
     .hero-images-container {
         width: 320px;
         height: 384px;
@@ -405,6 +425,22 @@ body {
 }
 
 @media (max-width: 768px) {
+    .hero {
+        padding: 100px 20px 60px;
+    }
+    
+    .hero-container {
+        flex-direction: column-reverse;
+        gap: 3rem;
+        text-align: center;
+    }
+    
+    .hero-content-centered {
+        margin-right: 0;
+        text-align: center;
+        max-width: 100%;
+    }
+    
     .hero-images-container {
         width: 256px;
         height: 320px;
@@ -430,6 +466,7 @@ body {
     .hero-buttons {
         flex-direction: column;
         align-items: center;
+        justify-content: center;
     }
     
     .btn {
