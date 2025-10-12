@@ -58,6 +58,46 @@ export default {
         );
       }
 
+      // Route: Update Payment Intent Metadata
+      if (path === '/update-payment-intent' && request.method === 'POST') {
+        const { paymentIntentId, metadata } = await request.json();
+
+        if (!paymentIntentId) {
+          return new Response(
+            JSON.stringify({ error: 'Payment Intent ID is required' }),
+            {
+              status: 400,
+              headers: {
+                'Content-Type': 'application/json',
+                ...corsHeaders,
+              },
+            }
+          );
+        }
+
+        // Update the PaymentIntent with customer metadata
+        const paymentIntent = await stripe.paymentIntents.update(
+          paymentIntentId,
+          {
+            metadata: metadata || {},
+          }
+        );
+
+        return new Response(
+          JSON.stringify({
+            success: true,
+            paymentIntentId: paymentIntent.id,
+          }),
+          {
+            status: 200,
+            headers: {
+              'Content-Type': 'application/json',
+              ...corsHeaders,
+            },
+          }
+        );
+      }
+
       // Route: Submit Project Data
       if (path === '/api/submit-project' && request.method === 'POST') {
         const projectData = await request.json();

@@ -1036,14 +1036,8 @@ async function initializeStripePayment() {
             paymentElementDiv.innerHTML = '<p style="text-align: center; padding: 2rem; color: #6C8094;">Loading payment form...</p>';
         }
         
-        // Get form data to include in payment metadata
-        const customerName = document.getElementById('client-name')?.value || '';
-        const customerEmail = document.getElementById('client-email')?.value || '';
-        const customerPhone = document.getElementById('client-phone')?.value || '';
-        const countryCode = document.getElementById('country-code')?.value || '';
-        const projectDescription = document.getElementById('project-description')?.value || '';
-        
         // Create payment intent on your server and get clientSecret
+        // Note: Customer form data will be added later when user submits
         console.log('Fetching payment intent from server...');
         const response = await fetch('https://raphael-portfolio-backend.raphael-devworkersdev.workers.dev/create-payment-intent', {
             method: 'POST',
@@ -1052,17 +1046,14 @@ async function initializeStripePayment() {
                 amount: amountInCents,
                 currency: 'usd',
                 metadata: {
-                    name: customerName,
-                    email: customerEmail,
-                    phone: `${countryCode} ${customerPhone}`,
+                    // Only include project data (known at page load)
                     service: window.currentProjectData.service,
                     complexity: window.currentProjectData.complexity,
                     tier: window.currentProjectData.tier || '',
                     totalCost: window.currentProjectData.totalCost.toString(),
                     remainingAmount: window.currentProjectData.remainingAmount.toString(),
                     depositAmount: window.currentProjectData.depositAmount.toString(),
-                    isHourlyRate: window.currentProjectData.isHourlyRate ? 'true' : 'false',
-                    projectDescription: projectDescription
+                    isHourlyRate: window.currentProjectData.isHourlyRate ? 'true' : 'false'
                 }
             }),
         });
@@ -1081,6 +1072,11 @@ async function initializeStripePayment() {
         if (!clientSecret) {
             throw new Error('No client secret received from server');
         }
+        
+        // Extract and store payment intent ID from client secret
+        // Client secret format: pi_xxx_secret_yyy
+        window.currentPaymentIntentId = clientSecret.split('_secret_')[0];
+        console.log('Payment Intent ID stored:', window.currentPaymentIntentId);
         
         // Create Stripe Elements
         console.log('Creating Stripe Elements...');
@@ -1125,11 +1121,17 @@ if (paymentForm) {
         setPaymentLoading(true);
         
         // Get form data
+        const customerName = document.getElementById('client-name').value;
+        const customerEmail = document.getElementById('client-email').value;
+        const customerPhone = document.getElementById('client-phone').value;
+        const countryCode = document.getElementById('country-code').value;
+        const projectDescription = document.getElementById('project-description').value;
+        
         const formData = {
-            name: document.getElementById('client-name').value,
-            email: document.getElementById('client-email').value,
-            phone: document.getElementById('client-phone').value,
-            description: document.getElementById('project-description').value,
+            name: customerName,
+            email: customerEmail,
+            phone: `${countryCode} ${customerPhone}`,
+            description: projectDescription,
             projectCost: window.currentProjectData.totalCost,
             depositAmount: window.currentProjectData.depositAmount,
             service: window.currentProjectData.service,
@@ -1137,12 +1139,42 @@ if (paymentForm) {
         };
         
         try {
-            // Confirm payment with Stripe
+            // Step 1: Update payment intent with customer metadata BEFORE confirming payment
+            console.log('Updating payment intent with customer data...');
+            const updateResponse = await fetch('https://raphael-portfolio-backend.raphael-devworkersdev.workers.dev/update-payment-intent', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    paymentIntentId: window.currentPaymentIntentId,
+                    metadata: {
+                        name: customerName,
+                        email: customerEmail,
+                        phone: `${countryCode} ${customerPhone}`,
+                        service: window.currentProjectData.service,
+                        complexity: window.currentProjectData.complexity,
+                        tier: window.currentProjectData.tier || '',
+                        totalCost: window.currentProjectData.totalCost.toString(),
+                        remainingAmount: window.currentProjectData.remainingAmount.toString(),
+                        depositAmount: window.currentProjectData.depositAmount.toString(),
+                        isHourlyRate: window.currentProjectData.isHourlyRate ? 'true' : 'false',
+                        projectDescription: projectDescription
+                    }
+                })
+            });
+            
+            if (!updateResponse.ok) {
+                throw new Error('Failed to update payment information');
+            }
+            
+            console.log('Payment intent updated successfully');
+            
+            // Step 2: Confirm payment with Stripe
+            console.log('Confirming payment...');
             const { error } = await stripe.confirmPayment({
                 elements,
                 confirmParams: {
                     return_url: window.location.origin + '/payment-success.html',
-                    receipt_email: formData.email,
+                    receipt_email: customerEmail,
                 },
                 redirect: 'if_required'
             });
