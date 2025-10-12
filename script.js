@@ -1,3 +1,34 @@
+// Force video thumbnails to load on mobile
+(function() {
+    // Wait for DOM to be ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadVideoThumbnails);
+    } else {
+        loadVideoThumbnails();
+    }
+
+    function loadVideoThumbnails() {
+        // Get all video elements
+        const videos = document.querySelectorAll('video');
+        
+        videos.forEach(video => {
+            // Load metadata to show first frame
+            video.load();
+            
+            // Try to load first frame
+            video.addEventListener('loadedmetadata', function() {
+                // Seek to 0.1 seconds to ensure a frame is loaded
+                this.currentTime = 0.1;
+            }, { once: true });
+            
+            // Handle the seek operation
+            video.addEventListener('seeked', function() {
+                // Frame is now loaded and should be visible
+            }, { once: true });
+        });
+    }
+})();
+
 // Hero Rotating Images
 (function() {
     const imageCards = document.querySelectorAll('.hero-image-card');
