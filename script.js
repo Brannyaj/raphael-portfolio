@@ -457,12 +457,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check if user has already accepted cookies
     const cookiesAccepted = localStorage.getItem('cookiesAccepted');
     
-    if (!cookiesAccepted) {
+    if (cookiesAccepted) {
+        // User already accepted - initialize Google Analytics
+        initializeGoogleAnalytics();
+    } else if (cookieBanner) {
         // Show banner with slight delay for smooth animation
         setTimeout(() => {
-            if (cookieBanner) {
-                cookieBanner.classList.add('show');
-            }
+            cookieBanner.classList.add('show');
         }, 1000);
     }
     
@@ -476,15 +477,25 @@ document.addEventListener('DOMContentLoaded', function() {
             // Hide banner with animation
             cookieBanner.classList.remove('show');
             
-            // Optional: Initialize your analytics tracking here
-            // Example: Google Analytics, etc.
-            console.log('Cookie consent accepted - Analytics can now be tracked');
+            // Initialize Google Analytics after consent
+            initializeGoogleAnalytics();
             
-            // You can add your tracking code here
-            // initializeAnalytics();
+            console.log('Cookie consent accepted - Google Analytics initialized');
         });
     }
 });
+
+// Initialize Google Analytics
+function initializeGoogleAnalytics() {
+    // Check if gtag exists (from the GA script)
+    if (typeof gtag === 'function') {
+        // Update consent status
+        gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+        });
+        console.log('Google Analytics tracking enabled');
+    }
+}
 
 // Pricing Calculator
 const pricingData = {
