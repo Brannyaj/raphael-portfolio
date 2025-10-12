@@ -956,7 +956,7 @@ async function initializeStripePayment() {
         
         // Create payment intent on your server and get clientSecret
         console.log('Fetching payment intent from server...');
-        const response = await fetch('https://raphael-backend.onrender.com/create-payment-intent', {
+        const response = await fetch('https://raphael-portfolio-backend.raphael-devworkersdev.workers.dev/create-payment-intent', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 
@@ -1070,7 +1070,7 @@ async function sendProjectData(formData) {
     // Send project data to your server
     // This is where you'd integrate with your backend to store the project details
     try {
-        const response = await fetch('https://raphael-backend.onrender.com/api/submit-project', {
+        const response = await fetch('https://raphael-portfolio-backend.raphael-devworkersdev.workers.dev/api/submit-project', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData)
