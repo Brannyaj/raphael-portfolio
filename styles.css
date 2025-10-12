@@ -129,12 +129,12 @@ body {
 
 /* Hero container - side by side layout */
 .hero-container {
-    max-width: 1400px;
+    max-width: 1200px;
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 4rem;
+    justify-content: center;
+    gap: 3rem;
     position: relative;
     z-index: 30;
 }
@@ -285,7 +285,7 @@ body {
     text-align: left;
     padding: 0 16px;
     color: white;
-    margin-right: 4rem;
+    margin-right: 0;
 }
 
 .hero-title {
@@ -410,7 +410,7 @@ body {
     }
     
     .hero-content-centered {
-        margin-right: 2rem;
+        margin-right: 0;
     }
     
     .hero-images-container {
