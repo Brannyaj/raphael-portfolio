@@ -971,6 +971,14 @@ async function initializeStripePayment() {
             paymentElementDiv.innerHTML = '<p style="text-align: center; padding: 2rem; color: #6C8094;">Loading payment form...</p>';
         }
         
+        // Get form data to include in payment metadata
+        const customerName = document.getElementById('client-name')?.value || '';
+        const customerEmail = document.getElementById('client-email')?.value || '';
+        const customerPhone = document.getElementById('client-phone')?.value || '';
+        const countryCode = document.getElementById('country-code')?.value || '';
+        const projectDescription = document.getElementById('project-description')?.value || '';
+        const companyName = document.getElementById('company-name')?.value || '';
+        
         // Create payment intent on your server and get clientSecret
         console.log('Fetching payment intent from server...');
         const response = await fetch('https://raphael-portfolio-backend.raphael-devworkersdev.workers.dev/create-payment-intent', {
@@ -978,7 +986,21 @@ async function initializeStripePayment() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 
                 amount: amountInCents,
-                currency: 'usd'
+                currency: 'usd',
+                metadata: {
+                    name: customerName,
+                    email: customerEmail,
+                    phone: `${countryCode} ${customerPhone}`,
+                    company: companyName,
+                    service: window.currentProjectData.service,
+                    complexity: window.currentProjectData.complexity,
+                    tier: window.currentProjectData.tier || '',
+                    totalCost: window.currentProjectData.totalCost.toString(),
+                    remainingAmount: window.currentProjectData.remainingAmount.toString(),
+                    depositAmount: window.currentProjectData.depositAmount.toString(),
+                    isHourlyRate: window.currentProjectData.isHourlyRate ? 'true' : 'false',
+                    projectDescription: projectDescription
+                }
             }),
         });
         
