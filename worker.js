@@ -267,7 +267,7 @@ async function sendCustomerConfirmation(customerEmail, metadata, amount, resendA
     body: JSON.stringify({
       from: 'Raphael <noreply@raphaelportfolio.com>',
       to: [customerEmail],
-      subject: '✅ Payment Confirmed - Your Project is Starting Soon!',
+      subject: 'Project details received',
       html: emailHtml,
     }),
   });
