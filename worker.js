@@ -352,7 +352,7 @@ async function sendAdminNotification(metadata, amount, paymentIntentId, resendAp
     body: JSON.stringify({
       from: 'Raphael Portfolio <noreply@raphaelportfolio.com>',
       to: ['raphaelagbo279@gmail.com'],
-      subject: `New Payment: $${amount} from ${metadata.name || 'Customer'}`,
+      subject: 'New Payment Received',
       html: emailHtml,
     }),
   });
