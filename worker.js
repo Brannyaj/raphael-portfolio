@@ -298,12 +298,12 @@ async function sendAdminNotification(metadata, amount, paymentIntentId, resendAp
     <body>
       <div class="container">
         <div class="header">
-          <h1>💰 New Payment Received!</h1>
+          <h1>New Payment Received!</h1>
           <p>A customer just completed their deposit payment</p>
         </div>
         <div class="content">
           <div class="info-box">
-            <h3>💵 Payment Information:</h3>
+            <h3>Payment Information:</h3>
             <p><strong>Amount Received:</strong> $${amount}</p>
             <p><strong>Payment ID:</strong> ${paymentIntentId}</p>
             <p><strong>Total Project Value:</strong> $${metadata.totalCost || 'N/A'}</p>
@@ -311,7 +311,7 @@ async function sendAdminNotification(metadata, amount, paymentIntentId, resendAp
           </div>
           
           <div class="info-box">
-            <h3>👤 Customer Details:</h3>
+            <h3>Customer Details:</h3>
             <p><strong>Name:</strong> ${metadata.name || 'N/A'}</p>
             <p><strong>Email:</strong> ${metadata.email || 'N/A'}</p>
             <p><strong>Phone:</strong> ${metadata.phone || 'N/A'}</p>
@@ -319,16 +319,16 @@ async function sendAdminNotification(metadata, amount, paymentIntentId, resendAp
           </div>
           
           <div class="info-box">
-            <h3>📋 Project Details:</h3>
+            <h3>Project Details:</h3>
             <p><strong>Service Type:</strong> ${metadata.service || 'N/A'}</p>
             <p><strong>Complexity:</strong> ${metadata.complexity || 'N/A'}</p>
             ${metadata.tier ? `<p><strong>Tier:</strong> ${metadata.tier}</p>` : ''}
-            ${metadata.isHourlyRate ? `<p><strong>⏱️ Hourly Rate Project</strong></p>` : ''}
+            ${metadata.isHourlyRate ? `<p><strong>Hourly Rate Project</strong></p>` : ''}
             ${metadata.projectDescription ? `<p><strong>Description:</strong><br>${metadata.projectDescription}</p>` : ''}
           </div>
           
           <div class="info-box">
-            <h3>⚡ Next Steps:</h3>
+            <h3>Next Steps:</h3>
             <ul>
               <li>Review the customer's requirements</li>
               <li>Contact them within 24-48 hours</li>
@@ -337,7 +337,7 @@ async function sendAdminNotification(metadata, amount, paymentIntentId, resendAp
             </ul>
           </div>
           
-          <p><strong>🎯 Action Required:</strong> Reach out to the customer to start the project!</p>
+          <p><strong>Action Required:</strong> Reach out to the customer to start the project!</p>
         </div>
       </div>
     </body>
@@ -353,7 +353,7 @@ async function sendAdminNotification(metadata, amount, paymentIntentId, resendAp
     body: JSON.stringify({
       from: 'Raphael Portfolio <noreply@raphaelportfolio.com>',
       to: ['raphaelagbo279@gmail.com'],
-      subject: `💰 New Payment: $${amount} from ${metadata.name || 'Customer'}`,
+      subject: `New Payment: $${amount} from ${metadata.name || 'Customer'}`,
       html: emailHtml,
     }),
   });
