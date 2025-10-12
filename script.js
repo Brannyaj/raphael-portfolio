@@ -458,8 +458,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const cookiesAccepted = localStorage.getItem('cookiesAccepted');
     
     if (cookiesAccepted) {
-        // User already accepted - initialize Google Analytics
-        initializeGoogleAnalytics();
+        // User already accepted - enable enhanced tracking
+        enableEnhancedAnalytics();
     } else if (cookieBanner) {
         // Show banner with slight delay for smooth animation
         setTimeout(() => {
@@ -477,23 +477,29 @@ document.addEventListener('DOMContentLoaded', function() {
             // Hide banner with animation
             cookieBanner.classList.remove('show');
             
-            // Initialize Google Analytics after consent
-            initializeGoogleAnalytics();
+            // Enable enhanced Google Analytics tracking after consent
+            enableEnhancedAnalytics();
             
-            console.log('Cookie consent accepted - Google Analytics initialized');
+            console.log('Cookie consent accepted - Enhanced analytics enabled');
         });
     }
 });
 
-// Initialize Google Analytics
-function initializeGoogleAnalytics() {
-    // Check if gtag exists (from the GA script)
+// Enable enhanced Google Analytics features after consent
+function enableEnhancedAnalytics() {
+    // Basic tracking already running, now enable enhanced features
     if (typeof gtag === 'function') {
-        // Update consent status
-        gtag('consent', 'update', {
-            'analytics_storage': 'granted'
+        // Enable demographics and interest reports
+        gtag('set', 'allow_google_signals', true);
+        
+        // Enable enhanced measurement
+        gtag('config', 'G-LSQRCDK0WS', {
+            'anonymize_ip': false,  // Full IP tracking after consent
+            'allow_google_signals': true,  // Demographics and interests
+            'allow_ad_personalization_signals': true  // Remarketing features
         });
-        console.log('Google Analytics tracking enabled');
+        
+        console.log('Enhanced Google Analytics tracking enabled');
     }
 }
 
