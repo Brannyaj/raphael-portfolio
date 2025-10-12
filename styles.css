@@ -2248,6 +2248,28 @@ section:first-of-type {
     font-size: 0.95rem;
 }
 
+.countdown-section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: rgba(108, 128, 148, 0.1);
+    border-radius: 12px;
+    border: 2px solid rgba(108, 128, 148, 0.2);
+}
+
+.countdown-text {
+    font-size: 1rem;
+    color: #1f2937;
+    margin: 0;
+    font-weight: 500;
+}
+
+.countdown-text #countdown {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #6C8094;
+    padding: 0 0.3rem;
+}
+
 .success-actions {
     display: flex;
     gap: 1rem;

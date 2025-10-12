@@ -91,8 +91,10 @@
                         </div>
                     </div>
                 </div>
+                <div class="countdown-section">
+                    <p class="countdown-text">Redirecting to homepage in <span id="countdown">10</span> seconds...</p>
+                </div>
                 <div class="success-actions">
-                    <a href="index.html" class="btn btn-primary">Back to Home</a>
                     <a href="contact.html" class="btn btn-secondary">Contact Me</a>
                 </div>
             </div>
@@ -100,6 +102,21 @@
     </section>
 
     <script src="script.js"></script>
+    <script>
+        // Countdown timer for automatic redirect
+        let countdown = 10;
+        const countdownElement = document.getElementById('countdown');
+        
+        const timer = setInterval(() => {
+            countdown--;
+            countdownElement.textContent = countdown;
+            
+            if (countdown <= 0) {
+                clearInterval(timer);
+                window.location.href = 'index.html';
+            }
+        }, 1000);
+    </script>
 </body>
 </html>
 
