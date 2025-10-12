@@ -700,6 +700,14 @@ section:first-of-type {
     width: 100%;
     margin-bottom: 1rem;
     position: relative;
+    background: #2d3748 !important;
+    border-color: #2d3748 !important;
+}
+
+.btn-submit:hover {
+    background: #1a202c !important;
+    border-color: #1a202c !important;
+    color: white !important;
 }
 
 .spinner {
@@ -1900,6 +1908,11 @@ section:first-of-type {
 .form-group textarea {
     resize: vertical;
     min-height: 120px;
+}
+
+/* Add spacing above project description */
+.form-group:has(textarea) {
+    margin-top: 2rem;
 }
 
 .phone-input-group {
