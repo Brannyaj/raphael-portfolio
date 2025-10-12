@@ -212,13 +212,13 @@ async function sendCustomerConfirmation(customerEmail, metadata, amount, resendA
     <body>
       <div class="container">
         <div class="header">
-          <h1>Payment Confirmed! ✅</h1>
+          <h1>Payment Confirmed!</h1>
           <p>Thank you for your deposit payment</p>
         </div>
         <div class="content">
           <p>Hi ${metadata.name || 'there'},</p>
           
-          <p>Your payment has been successfully processed! I've received your project details and will be in touch within <strong>24-48 hours</strong> to discuss the next steps.</p>
+          <p>Your payment has been successfully processed! I've received your project details and will be in touch within <strong>24 hours</strong> to discuss the next steps.</p>
           
           <div class="info-box">
             <h3>Payment Details:</h3>
@@ -241,8 +241,8 @@ async function sendCustomerConfirmation(customerEmail, metadata, amount, resendA
           </div>
           
           <p>If you have any questions in the meantime, feel free to reply to this email or contact me at:</p>
-          <p>📧 <a href="mailto:raphaelagbo279@gmail.com">raphaelagbo279@gmail.com</a><br>
-          📱 <a href="tel:+14157411433">+1 415-741-1433</a></p>
+          <p><a href="mailto:raphaelagbo279@gmail.com">raphaelagbo279@gmail.com</a><br>
+          <a href="tel:+14157411433">+1 415-741-1433</a></p>
           
           <p>Looking forward to bringing your project to life!</p>
           
