@@ -1,3 +1,37 @@
+// Hero Rotating Images
+(function() {
+    const imageCards = document.querySelectorAll('.hero-image-card');
+    const totalImages = imageCards.length;
+    let currentIndex = 0;
+
+    if (totalImages === 0) return; // Exit if no images
+
+    // Function to update image positions
+    function updateImagePositions() {
+        imageCards.forEach((card, index) => {
+            // Calculate relative position to current index
+            let relativePosition = (index - currentIndex + totalImages) % totalImages;
+            
+            // Set data-position attribute for CSS transitions
+            card.setAttribute('data-position', relativePosition);
+        });
+    }
+
+    // Initialize positions
+    updateImagePositions();
+
+    // Auto-rotate every 3 seconds
+    const rotationInterval = setInterval(() => {
+        currentIndex = (currentIndex + 1) % totalImages;
+        updateImagePositions();
+    }, 3000);
+
+    // Clean up on page unload (good practice)
+    window.addEventListener('beforeunload', () => {
+        clearInterval(rotationInterval);
+    });
+})();
+
 // Mobile Navigation Toggle
 const navToggle = document.getElementById('nav-toggle');
 const navMenu = document.getElementById('nav-menu');
