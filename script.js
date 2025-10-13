@@ -639,7 +639,7 @@ const pricingData = {
     },
     blockchain: {
         'basic': {
-            price: 70000000,
+            price: 70000,
             description: 'Basic blockchain development and smart contracts'
         },
         'advanced': {
