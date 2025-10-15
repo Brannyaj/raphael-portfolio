@@ -526,10 +526,10 @@ document.addEventListener('DOMContentLoaded', function() {
         // User already accepted - enable enhanced tracking
         enableEnhancedAnalytics();
     } else if (cookieBanner) {
-        // Show banner with slight delay for smooth animation
+        // Show banner with minimal delay for smooth animation
         setTimeout(() => {
             cookieBanner.classList.add('show');
-        }, 1000);
+        }, 500);
     }
     
     // Handle accept button click
