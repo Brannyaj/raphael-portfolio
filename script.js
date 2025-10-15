@@ -519,8 +519,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const cookieBanner = document.getElementById('cookie-banner');
     const acceptBtn = document.getElementById('accept-cookies');
     
-    // Check if user has already accepted cookies
-    const cookiesAccepted = localStorage.getItem('cookiesAccepted');
+    // Check if user has already accepted cookies in this session
+    const cookiesAccepted = sessionStorage.getItem('cookiesAccepted');
     
     if (cookiesAccepted) {
         // User already accepted - enable enhanced tracking
@@ -535,9 +535,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Handle accept button click
     if (acceptBtn) {
         acceptBtn.addEventListener('click', function() {
-            // Save consent to localStorage
-            localStorage.setItem('cookiesAccepted', 'true');
-            localStorage.setItem('cookieAcceptedDate', new Date().toISOString());
+            // Save consent to sessionStorage (clears when tab/browser closes)
+            sessionStorage.setItem('cookiesAccepted', 'true');
+            sessionStorage.setItem('cookieAcceptedDate', new Date().toISOString());
             
             // Hide banner with animation
             cookieBanner.classList.remove('show');
