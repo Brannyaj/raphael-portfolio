@@ -542,6 +542,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Hide banner with animation
             cookieBanner.classList.remove('show');
+            cookieBanner.style.transform = 'translateY(100%)'; // Override inline CSS
             
             // Enable enhanced Google Analytics tracking after consent
             enableEnhancedAnalytics();
