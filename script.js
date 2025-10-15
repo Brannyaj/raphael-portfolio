@@ -558,11 +558,59 @@ function initializeGoogleAnalytics() {
             'send_page_view': true,
             'anonymize_ip': false,  // Enable proper tracking
             'allow_google_signals': false,  // Start with basic tracking
-            'allow_ad_personalization_signals': false
+            'allow_ad_personalization_signals': false,
+            'debug_mode': true,     // Enable debug mode
+            'transport_type': 'beacon'  // Use beacon for reliability
         });
         
-        console.log('Google Analytics initialized with basic tracking');
+        console.log('🔧 Google Analytics initialized with basic tracking');
+        
+        // Send a test event
+        gtag('event', 'custom_event', {
+            'event_category': 'debug',
+            'event_label': 'analytics_initialized',
+            'value': 1
+        });
+        console.log('📊 Test event sent to GA4');
+        
+        // Check if dataLayer is working
+        console.log('📋 DataLayer contents:', window.dataLayer);
+        
+    } else {
+        console.error('❌ gtag function not available during initialization');
     }
+}
+
+// Debug function to test GA4 tracking
+function debugGoogleAnalytics() {
+    console.log('🔍 DEBUGGING GOOGLE ANALYTICS:');
+    console.log('1. gtag function available:', typeof gtag === 'function');
+    console.log('2. dataLayer exists:', !!window.dataLayer);
+    console.log('3. dataLayer length:', window.dataLayer ? window.dataLayer.length : 'N/A');
+    console.log('4. Current URL:', window.location.href);
+    console.log('5. User Agent:', navigator.userAgent);
+    
+    // Test sending an event
+    if (typeof gtag === 'function') {
+        gtag('event', 'debug_test', {
+            'event_category': 'debug',
+            'event_label': 'manual_test',
+            'value': 1,
+            'custom_parameter': 'test_value'
+        });
+        console.log('✅ Debug test event sent');
+    }
+    
+    // Check for ad blockers
+    const testScript = document.createElement('script');
+    testScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-LSQRCDK0WS';
+    testScript.onerror = function() {
+        console.error('❌ Ad blocker detected - GA script blocked');
+    };
+    testScript.onload = function() {
+        console.log('✅ GA script loaded successfully');
+    };
+    document.head.appendChild(testScript);
 }
 
 // Enable enhanced Google Analytics features after consent
@@ -574,7 +622,18 @@ function enableEnhancedAnalytics() {
         gtag('set', 'allow_ad_personalization_signals', true);
         gtag('set', 'anonymize_ip', false);
         
-        console.log('Enhanced Google Analytics tracking enabled');
+        console.log('🚀 Enhanced Google Analytics tracking enabled');
+        
+        // Send enhanced tracking test event
+        gtag('event', 'enhanced_tracking_enabled', {
+            'event_category': 'consent',
+            'event_label': 'cookie_accepted',
+            'value': 1
+        });
+        console.log('📈 Enhanced tracking test event sent');
+        
+    } else {
+        console.error('❌ gtag function not available for enhanced tracking');
     }
 }
 
