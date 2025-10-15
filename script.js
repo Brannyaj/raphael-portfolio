@@ -529,6 +529,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Show banner with minimal delay for smooth animation
         setTimeout(() => {
             cookieBanner.classList.add('show');
+            cookieBanner.style.transform = 'translateY(0)'; // Override inline CSS
         }, 500);
     }
     
