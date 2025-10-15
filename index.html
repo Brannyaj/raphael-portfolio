@@ -61,6 +61,9 @@
         <div style="color: white; margin-top: 20px; font-family: Inter, sans-serif; font-size: 16px;">Loading...</div>
     </div>
     
+    <!-- Hide all content until loaded -->
+    <div id="main-content" style="opacity: 0; transition: opacity 0.5s ease;">
+    
     <style>
         @keyframes spin {
             0% { transform: rotate(0deg); }
@@ -356,7 +359,7 @@
             <button id="accept-cookies" class="cookie-btn">Accept</button>
         </div>
     </div>
-
+    </div> <!-- End main-content -->
 
     <script src="script.js"></script>
     
@@ -364,14 +367,24 @@
     <!-- Hide loading spinner when page is fully loaded -->
     <script>
         window.addEventListener('load', function() {
-            const loading = document.getElementById('loading');
-            if (loading) {
-                loading.style.opacity = '0';
-                loading.style.transition = 'opacity 0.5s ease';
-                setTimeout(() => {
-                    loading.style.display = 'none';
-                }, 500);
-            }
+            // Wait a bit longer to ensure CSS is fully loaded
+            setTimeout(() => {
+                const loading = document.getElementById('loading');
+                const mainContent = document.getElementById('main-content');
+                
+                if (loading && mainContent) {
+                    // Show main content
+                    mainContent.style.opacity = '1';
+                    
+                    // Hide loading spinner
+                    loading.style.opacity = '0';
+                    loading.style.transition = 'opacity 0.5s ease';
+                    
+                    setTimeout(() => {
+                        loading.style.display = 'none';
+                    }, 500);
+                }
+            }, 800); // Wait 800ms to ensure everything is loaded
         });
     </script>
 </body>

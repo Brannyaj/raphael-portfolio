@@ -29,7 +29,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body style="background: #ffffff; margin: 0; padding: 0;">
-    <!-- Navigation -->
+    <!-- Loading Spinner -->
+    <div id="loading" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #ffffff; z-index: 9999; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+        <div style="width: 50px; height: 50px; border: 3px solid rgba(0,0,0,0.3); border-top: 3px solid #2563eb; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+        <div style="color: #1f2937; margin-top: 20px; font-family: Inter, sans-serif; font-size: 16px;">Loading...</div>
+    </div>
+    
+    <!-- Hide all content until loaded -->
+    <div id="main-content" style="opacity: 0; transition: opacity 0.5s ease;">
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
@@ -240,7 +247,39 @@
             </div>
         </div>
     </section>
+    </div> <!-- End main-content -->
 
     <script src="script.js"></script>
+    
+    <style>
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    
+    <!-- Hide loading spinner when page is fully loaded -->
+    <script>
+        window.addEventListener('load', function() {
+            // Wait a bit longer to ensure CSS is fully loaded
+            setTimeout(() => {
+                const loading = document.getElementById('loading');
+                const mainContent = document.getElementById('main-content');
+                
+                if (loading && mainContent) {
+                    // Show main content
+                    mainContent.style.opacity = '1';
+                    
+                    // Hide loading spinner
+                    loading.style.opacity = '0';
+                    loading.style.transition = 'opacity 0.5s ease';
+                    
+                    setTimeout(() => {
+                        loading.style.display = 'none';
+                    }, 500);
+                }
+            }, 800); // Wait 800ms to ensure everything is loaded
+        });
+    </script>
 </body>
 </html>
