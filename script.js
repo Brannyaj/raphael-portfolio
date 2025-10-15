@@ -516,6 +516,9 @@ window.addEventListener('scroll', debouncedScrollHandler);
 
 // Cookie Consent Banner
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Google Analytics immediately
+    initializeGoogleAnalytics();
+    
     const cookieBanner = document.getElementById('cookie-banner');
     const acceptBtn = document.getElementById('accept-cookies');
     
@@ -546,6 +549,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// Initialize Google Analytics properly
+function initializeGoogleAnalytics() {
+    if (typeof gtag === 'function') {
+        // Ensure proper tracking configuration
+        gtag('config', 'G-LSQRCDK0WS', {
+            'send_page_view': true,
+            'anonymize_ip': false,  // Enable proper tracking
+            'allow_google_signals': false,  // Start with basic tracking
+            'allow_ad_personalization_signals': false
+        });
+        
+        console.log('Google Analytics initialized with basic tracking');
+    }
+}
 
 // Enable enhanced Google Analytics features after consent
 function enableEnhancedAnalytics() {
