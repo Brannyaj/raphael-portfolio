@@ -357,51 +357,9 @@
         </div>
     </div>
 
-    <!-- Debug Panel (only visible in development) -->
-    <div id="debug-panel" style="position: fixed; top: 10px; right: 10px; background: rgba(0,0,0,0.8); color: white; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 12px; z-index: 10000; display: none;">
-        <h4 style="margin: 0 0 10px 0;">🔍 GA4 Debug Panel</h4>
-        <button onclick="debugGoogleAnalytics()" style="background: #007cba; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; margin-bottom: 5px;">Test GA4</button>
-        <div id="debug-output" style="max-height: 200px; overflow-y: auto; font-size: 10px;"></div>
-    </div>
 
     <script src="script.js"></script>
     
-    <!-- Debug Panel Script -->
-    <script>
-        // Show debug panel (you can remove this in production)
-        document.addEventListener('DOMContentLoaded', function() {
-            const debugPanel = document.getElementById('debug-panel');
-            if (debugPanel) {
-                debugPanel.style.display = 'block';
-            }
-            
-            // Capture console output for debug panel
-            const originalLog = console.log;
-            const originalError = console.error;
-            const debugOutput = document.getElementById('debug-output');
-            
-            function addToDebugOutput(message, type = 'log') {
-                if (debugOutput) {
-                    const div = document.createElement('div');
-                    div.style.color = type === 'error' ? '#ff6b6b' : '#4ecdc4';
-                    div.style.marginBottom = '2px';
-                    div.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
-                    debugOutput.appendChild(div);
-                    debugOutput.scrollTop = debugOutput.scrollHeight;
-                }
-            }
-            
-            console.log = function(...args) {
-                originalLog.apply(console, args);
-                addToDebugOutput(args.join(' '), 'log');
-            };
-            
-            console.error = function(...args) {
-                originalError.apply(console, args);
-                addToDebugOutput(args.join(' '), 'error');
-            };
-        });
-    </script>
     
     <!-- Hide loading spinner when page is fully loaded -->
     <script>
