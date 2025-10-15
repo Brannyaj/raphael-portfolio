@@ -522,8 +522,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const cookieBanner = document.getElementById('cookie-banner');
     const acceptBtn = document.getElementById('accept-cookies');
     
-    // Always show banner on every page load (Option 4)
-    if (cookieBanner) {
+    // Check if user has already accepted cookies in this session
+    const cookiesAccepted = sessionStorage.getItem('cookiesAccepted');
+    
+    // Only show banner if user hasn't accepted in this session
+    if (cookieBanner && !cookiesAccepted) {
         // Show banner with minimal delay for smooth animation
         setTimeout(() => {
             cookieBanner.classList.add('show');
