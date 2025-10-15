@@ -92,7 +92,7 @@ body {
 
 .bar {
     width: 25px;
-    height: 3px;
+    height: 5px;
     background: #111827;
     margin: 3px 0;
     transition: 0.3s;
