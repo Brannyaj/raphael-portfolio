@@ -188,10 +188,10 @@ document.head.appendChild(style);
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+        navbar.style.background = 'rgba(255, 255, 255, 0.3)';
         navbar.style.boxShadow = '0 25px 50px -12px rgba(0, 0, 0, 0.35)';
     } else {
-        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+        navbar.style.background = 'rgba(255, 255, 255, 0.2)';
         navbar.style.boxShadow = '0 25px 50px -12px rgba(0, 0, 0, 0.25)';
     }
 });
@@ -498,10 +498,10 @@ const debouncedScrollHandler = debounce(() => {
     // Navbar background change
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+        navbar.style.background = 'rgba(255, 255, 255, 0.3)';
         navbar.style.boxShadow = '0 25px 50px -12px rgba(0, 0, 0, 0.35)';
     } else {
-        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+        navbar.style.background = 'rgba(255, 255, 255, 0.2)';
         navbar.style.boxShadow = '0 25px 50px -12px rgba(0, 0, 0, 0.25)';
     }
     
