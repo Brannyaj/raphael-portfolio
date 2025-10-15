@@ -551,15 +551,10 @@ document.addEventListener('DOMContentLoaded', function() {
 function enableEnhancedAnalytics() {
     // Basic tracking already running, now enable enhanced features
     if (typeof gtag === 'function') {
-        // Enable demographics and interest reports
+        // Use 'set' to update specific properties without overriding config
         gtag('set', 'allow_google_signals', true);
-        
-        // Enable enhanced measurement
-        gtag('config', 'G-LSQRCDK0WS', {
-            'anonymize_ip': false,  // Full IP tracking after consent
-            'allow_google_signals': true,  // Demographics and interests
-            'allow_ad_personalization_signals': true  // Remarketing features
-        });
+        gtag('set', 'allow_ad_personalization_signals', true);
+        gtag('set', 'anonymize_ip', false);
         
         console.log('Enhanced Google Analytics tracking enabled');
     }
