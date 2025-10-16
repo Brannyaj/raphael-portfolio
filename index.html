@@ -380,7 +380,7 @@
                     // Show main content
                     mainContent.style.opacity = '1';
                     
-                    // Wait for content to be fully visible before hiding spinner
+                    // Wait for content transition to complete before hiding spinner
                     setTimeout(() => {
                         // Now hide loading spinner smoothly
                         loading.style.opacity = '0';
@@ -390,7 +390,7 @@
                         setTimeout(() => {
                             loading.style.display = 'none';
                         }, 500);
-                    }, 200); // Wait 200ms for content to be fully visible
+                    }, 700); // Wait 700ms for content transition (0.5s) + buffer
                 }
             }, 800); // Wait 800ms to ensure everything is loaded
         });
