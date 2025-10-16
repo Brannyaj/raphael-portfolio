@@ -380,15 +380,17 @@
                     // Show main content
                     mainContent.style.opacity = '1';
                     
-                    // Hide loading spinner with delay to ensure smooth transition
+                    // Wait for content to be fully visible before hiding spinner
                     setTimeout(() => {
+                        // Now hide loading spinner smoothly
                         loading.style.opacity = '0';
                         loading.style.transition = 'opacity 0.5s ease';
                         
+                        // Remove spinner completely after fade
                         setTimeout(() => {
                             loading.style.display = 'none';
                         }, 500);
-                    }, 100); // Small delay to ensure content is visible
+                    }, 200); // Wait 200ms for content to be fully visible
                 }
             }, 800); // Wait 800ms to ensure everything is loaded
         });
