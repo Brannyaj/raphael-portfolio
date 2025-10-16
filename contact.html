@@ -110,21 +110,23 @@
                 const mainContent = document.getElementById('main-content');
                 
                 if (loading && mainContent) {
+                    // Set correct background color first (keep white for contact page)
+                    // document.body.style.background = '#0f172a'; // Contact page stays white
+                    
                     // Show main content
                     mainContent.style.opacity = '1';
                     
-                    // Hide loading spinner
-                    loading.style.opacity = '0';
-                    loading.style.transition = 'opacity 0.5s ease';
-                    
+                    // Hide loading spinner with delay to ensure smooth transition
                     setTimeout(() => {
-                        loading.style.display = 'none';
-                    }, 500);
+                        loading.style.opacity = '0';
+                        loading.style.transition = 'opacity 0.5s ease';
+                        
+                        setTimeout(() => {
+                            loading.style.display = 'none';
+                        }, 500);
+                    }, 100); // Small delay to ensure content is visible
                 }
             }, 800); // Wait 800ms to ensure everything is loaded
-            
-            // Set correct background color after loading (keep white for contact page)
-            // document.body.style.background = '#0f172a'; // Contact page stays white
         });
     </script>
 </body>
