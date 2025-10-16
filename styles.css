@@ -1515,6 +1515,14 @@ section:first-of-type {
 .overview-item p {
     color: #6b7280;
     line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.overview-item .btn {
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
 /* CTA Section */
