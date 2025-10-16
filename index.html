@@ -48,26 +48,240 @@
     <link rel="apple-touch-icon" href="favicon.svg?v=3">
     <link rel="shortcut icon" type="image/svg+xml" href="favicon.svg?v=3">
     
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body style="background: #ffffff; margin: 0; padding: 0;">
-    <!-- Loading Spinner -->
-    <div id="loading" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #ffffff; z-index: 9999; display: flex; align-items: center; justify-content: center; flex-direction: column;">
-        <div style="width: 50px; height: 50px; border: 3px solid rgba(0,0,0,0.3); border-top: 3px solid #2563eb; border-radius: 50%; animation: spin 1s linear infinite;"></div>
-        <div style="color: #1f2937; margin-top: 20px; font-family: Inter, sans-serif; font-size: 16px;">Loading...</div>
-    </div>
-    
-    <!-- Hide all content until loaded -->
-    <div id="main-content" style="opacity: 0; transition: opacity 0.5s ease;">
-    
+    <!-- Critical CSS Inline for Instant Rendering -->
     <style>
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        /* Reset and Base Styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: Georgia, "Times New Roman", Times, serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            background: #ffffff;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Navigation - Critical */
+        .navbar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 40px);
+            max-width: 1200px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            z-index: 50;
+            transition: all 0.3s ease;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            height: 64px;
+        }
+        .nav-container {
+            max-width: 1152px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+        .nav-logo a {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1f2937;
+            text-decoration: none;
+        }
+        .nav-menu { display: flex; gap: 2rem; }
+        .nav-link {
+            color: #1f2937;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+        }
+        .nav-link:hover {
+            color: #2563eb;
+            background: rgba(37, 99, 235, 0.1);
+        }
+        .nav-link.active {
+            color: #2563eb;
+            background: rgba(37, 99, 235, 0.15);
+        }
+        
+        /* Hero Section - Critical */
+        .hero {
+            min-height: 100vh;
+            width: 100%;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 20px 80px;
+        }
+        .hero-container {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3rem;
+            position: relative;
+            z-index: 30;
+        }
+        .hero-content-centered {
+            position: relative;
+            z-index: 30;
+            max-width: 600px;
+            width: 100%;
+            text-align: left;
+            padding: 0 16px;
+            color: white;
+            margin-right: 0;
+        }
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            color: white;
+        }
+        .highlight { color: #6C8094; }
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+            color: white;
+        }
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+            line-height: 1.7;
+            color: white;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-start;
+        }
+        .btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+            border: 2px solid #2563eb;
+        }
+        .btn-primary:hover {
+            background: #1d4ed8;
+            border-color: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+        }
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        .btn-outline:hover {
+            background: white;
+            color: #0f172a;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Mobile Navigation */
+        .nav-toggle { display: none; flex-direction: column; cursor: pointer; }
+        .bar {
+            width: 25px;
+            height: 5px;
+            background: #111827;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        /* Responsive - Mobile */
+        @media screen and (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%) translateY(-100%);
+                width: calc(100% - 40px);
+                background: #ffffff;
+                border: 1px solid #e5e7eb;
+                border-radius: 16px;
+                padding: 2rem;
+                flex-direction: column;
+                gap: 1rem;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                z-index: 100;
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            }
+            .nav-menu.active {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            .nav-toggle { display: flex; }
+            .hero-container {
+                flex-direction: column-reverse;
+                gap: 3rem;
+                text-align: center;
+            }
+            .hero-content-centered {
+                margin-right: 0;
+                text-align: center;
+                max-width: 100%;
+            }
+            .hero-title { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 1.25rem; }
+            .hero-description { font-size: 1rem; }
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+            .btn { width: 100%; max-width: 280px; }
         }
     </style>
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    
+    <!-- Load Non-Critical CSS Asynchronously -->
+    <link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="styles.css"></noscript>
+    
+    <!-- Load Fonts Optimized -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+</head>
+<body>
+    <!-- Content shows immediately with critical CSS -->
+    
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -361,37 +575,17 @@
             <button id="accept-cookies" class="cookie-btn">Accept</button>
         </div>
     </div>
-    </div> <!-- End main-content -->
 
     <script src="script.js"></script>
     
-    
-    <!-- Hide loading spinner when page is fully loaded -->
+    <!-- Progressive Enhancement - Enhance after DOM is ready -->
     <script>
-        window.addEventListener('load', function() {
-            // Wait a bit longer to ensure CSS is fully loaded
-            setTimeout(() => {
-                const loading = document.getElementById('loading');
-                const mainContent = document.getElementById('main-content');
-                
-                if (loading && mainContent) {
-                    // Set correct background color first
-                    document.body.style.background = '#0f172a';
-                    
-                    // Show main content
-                    mainContent.style.opacity = '1';
-                    
-                    // Hide loading spinner with delay to ensure smooth transition
-                    setTimeout(() => {
-                        loading.style.opacity = '0';
-                        loading.style.transition = 'opacity 0.5s ease';
-                        
-                        setTimeout(() => {
-                            loading.style.display = 'none';
-                        }, 500);
-                    }, 100); // Small delay to ensure content is visible
-                }
-            }, 800); // Wait 800ms to ensure everything is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set correct background color for dark pages
+            document.body.style.background = '#0f172a';
+            
+            // Add any enhancements here (animations, interactions, etc.)
+            console.log('🚀 Page loaded with critical CSS - enhancing now');
         });
     </script>
 </body>
