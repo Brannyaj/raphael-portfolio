@@ -58,7 +58,7 @@
             line-height: 1.6;
             color: #333;
             overflow-x: hidden;
-            background: #ffffff;
+            background: #0f172a;
         }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         
@@ -115,7 +115,7 @@
             background: rgba(37, 99, 235, 0.15);
         }
         
-        /* Hero Section - Critical */
+        /* Hero Section - Complete Critical CSS */
         .hero {
             min-height: 100vh;
             width: 100%;
@@ -136,6 +136,124 @@
             gap: 3rem;
             position: relative;
             z-index: 30;
+        }
+        .hero-background-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 5;
+            pointer-events: none;
+        }
+        .decorative-dots {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 15;
+            pointer-events: none;
+        }
+        .dot {
+            position: absolute;
+            border-radius: 50%;
+        }
+        .dot-1 {
+            top: 80px;
+            left: 40px;
+            width: 16px;
+            height: 16px;
+            background: #60a5fa;
+            opacity: 0.6;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        .dot-2 {
+            top: 160px;
+            right: 80px;
+            width: 24px;
+            height: 24px;
+            background: #c084fc;
+            opacity: 0.4;
+            animation: bounce 3s ease-in-out infinite;
+        }
+        .dot-3 {
+            bottom: 128px;
+            left: 80px;
+            width: 12px;
+            height: 12px;
+            background: white;
+            opacity: 0.5;
+            animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+        .dot-4 {
+            bottom: 80px;
+            right: 40px;
+            width: 20px;
+            height: 20px;
+            background: #7dd3fc;
+            opacity: 0.3;
+            animation: pulse 3s ease-in-out infinite;
+        }
+        .hero-images-container {
+            position: relative;
+            z-index: 10;
+            width: 384px;
+            height: 448px;
+            pointer-events: none;
+            flex-shrink: 0;
+        }
+        .hero-image-card {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 384px;
+            height: 448px;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transition: all 1000ms ease-in-out;
+            overflow: hidden;
+        }
+        .hero-image-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent);
+            z-index: 1;
+            pointer-events: none;
+        }
+        .hero-image-card[data-position="0"] {
+            transform: translateY(0px) scale(1.0);
+            opacity: 1;
+            z-index: 10;
+        }
+        .hero-image-card[data-position="1"] {
+            transform: translateY(-60px) scale(0.9);
+            opacity: 0.6;
+            z-index: 9;
+        }
+        .hero-image-card[data-position="2"] {
+            transform: translateY(-120px) scale(0.8);
+            opacity: 0.4;
+            z-index: 8;
+        }
+        .hero-image-card[data-position="3"],
+        .hero-image-card[data-position="4"],
+        .hero-image-card[data-position="5"],
+        .hero-image-card[data-position="6"],
+        .hero-image-card[data-position="7"] {
+            transform: translateY(-200px) scale(0.6);
+            opacity: 0;
+            z-index: 7;
         }
         .hero-content-centered {
             position: relative;
@@ -173,6 +291,152 @@
             display: flex;
             gap: 1rem;
             justify-content: flex-start;
+        }
+        
+        /* What I Do Section - Critical */
+        .quick-overview {
+            background: #f9fafb;
+            padding: 80px 0;
+            position: relative;
+            z-index: 2;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+        .section-header p {
+            font-size: 1.1rem;
+            color: #6b7280;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .overview-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .overview-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .overview-icon {
+            width: 80px;
+            height: 80px;
+            background: #283444;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 2rem;
+        }
+        .overview-item h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+        .overview-item p {
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        .overview-item .btn {
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        /* Cookie Banner - Critical */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(31, 41, 55, 0.98);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 20px;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+            z-index: 10000;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+        .cookie-banner.show {
+            transform: translateY(0);
+        }
+        .cookie-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+        .cookie-text p {
+            margin: 0;
+            line-height: 1.6;
+        }
+        .cookie-text p:first-child {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        .cookie-text p:last-child {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        .cookie-btn {
+            padding: 12px 32px;
+            background: rgba(108, 128, 148, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            font-family: inherit;
+        }
+        .cookie-btn:hover {
+            background: rgba(108, 128, 148, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(108, 128, 148, 0.5);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Animations - Critical */
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes ping {
+            0% { transform: scale(1); opacity: 0.5; }
+            75%, 100% { transform: scale(1.2); opacity: 0; }
         }
         .btn {
             padding: 12px 30px;
@@ -581,11 +845,8 @@
     <!-- Progressive Enhancement - Enhance after DOM is ready -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Set correct background color for dark pages
-            document.body.style.background = '#0f172a';
-            
-            // Add any enhancements here (animations, interactions, etc.)
-            console.log('🚀 Page loaded with critical CSS - enhancing now');
+            // Page loads with correct styling immediately - no background changes needed
+            console.log('🚀 Page loaded with complete critical CSS - enhancing now');
         });
     </script>
 </body>
