@@ -1323,9 +1323,22 @@ section:first-of-type {
 
 /* Portfolio Showcase Section */
 .portfolio-showcase {
-    background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
-    padding: 80px 0;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    padding: 100px 0;
     color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-showcase-background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 5;
+    pointer-events: none;
 }
 
 .portfolio-showcase .section-header h2 {
