@@ -547,6 +547,36 @@
 
     <script src="script.js"></script>
     
+    <style>
+        /* Auto-scrolling carousel animation */
+        @keyframes autoScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        .reviews-grid.auto-scroll {
+            animation: autoScroll 60s linear infinite;
+        }
+        
+        .reviews-grid.auto-scroll:hover {
+            animation-play-state: paused;
+        }
+    </style>
+    
+    <!-- Auto-scrolling reviews carousel -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const reviewsGrid = document.querySelector('.reviews-grid');
+            if (reviewsGrid) {
+                // Duplicate reviews for seamless loop
+                const reviews = reviewsGrid.innerHTML;
+                reviewsGrid.innerHTML = reviews + reviews;
+                
+                // Add auto-scroll class
+                reviewsGrid.classList.add('auto-scroll');
+            }
+        });
+    </script>
     
     <!-- Hide loading spinner when page is fully loaded -->
     <script>
