@@ -1346,7 +1346,7 @@ section:first-of-type {
 }
 
 .portfolio-showcase .section-header p {
-    color: white;
+    color: white !important;
 }
 
 .portfolio-showcase-grid {
@@ -1421,8 +1421,8 @@ section:first-of-type {
     font-weight: 600;
 }
 
-.portfolio-showcase-content p {
-    color: white;
+.portfolio-showcase .portfolio-showcase-content p {
+    color: white !important;
     margin: 0;
     font-size: 0.95rem;
     line-height: 1.6;
@@ -2954,23 +2954,23 @@ section:first-of-type {
     font-size: 16px;
 }
 
-.review-content p {
-    color: white;
+.reviews .review-content p {
+    color: white !important;
     font-size: 16px;
     line-height: 1.6;
     margin-bottom: 25px;
     font-style: italic;
 }
 
-.review-author h4 {
-    color: #ffffff;
+.reviews .review-author h4 {
+    color: white !important;
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 5px;
 }
 
-.review-author span {
-    color: white;
+.reviews .review-author span {
+    color: white !important;
     font-size: 14px;
     font-weight: 400;
 }
