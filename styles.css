@@ -2859,6 +2859,14 @@ section:first-of-type {
     background: linear-gradient(to left, #0f172a, transparent);
 }
 
+.reviews .section-header h2 {
+    color: white;
+}
+
+.reviews .section-header p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
 .reviews-grid {
     display: flex;
     gap: 30px;
