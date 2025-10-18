@@ -1226,7 +1226,7 @@ section:first-of-type {
 
 .video-showcase-item {
     flex: 1;
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.15);
@@ -1238,7 +1238,7 @@ section:first-of-type {
 .video-showcase-item:hover {
     transform: translateY(-8px);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(0, 0, 0, 0.4);
 }
 
 .video-showcase-container {
