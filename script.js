@@ -51,11 +51,11 @@
     // Initialize positions
     updateImagePositions();
 
-    // Auto-rotate every 3 seconds
+    // Auto-rotate every 2 seconds
     const rotationInterval = setInterval(() => {
         currentIndex = (currentIndex + 1) % totalImages;
         updateImagePositions();
-    }, 3000);
+    }, 2000);
 
     // Clean up on page unload (good practice)
     window.addEventListener('beforeunload', () => {
