@@ -1775,8 +1775,21 @@ section:first-of-type {
 
 /* Portfolio Section */
 .portfolio {
-    background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
-    padding: 80px 0;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 5;
+    pointer-events: none;
 }
 
 .portfolio .section-header h2 {
@@ -1784,7 +1797,7 @@ section:first-of-type {
 }
 
 .portfolio .section-header p {
-    color: rgba(255, 255, 255, 0.9);
+    color: white !important;
 }
 
 .portfolio-notice {
@@ -1947,7 +1960,7 @@ section:first-of-type {
 }
 
 .portfolio-content p {
-    color: rgba(255, 255, 255, 0.8);
+    color: white !important;
     margin-bottom: 1rem;
     line-height: 1.6;
 }
