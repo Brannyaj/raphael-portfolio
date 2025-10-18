@@ -1346,7 +1346,7 @@ section:first-of-type {
 }
 
 .portfolio-showcase .section-header p {
-    color: rgba(255, 255, 255, 0.8);
+    color: white;
 }
 
 .portfolio-showcase-grid {
@@ -1422,7 +1422,7 @@ section:first-of-type {
 }
 
 .portfolio-showcase-content p {
-    color: rgba(255, 255, 255, 0.8);
+    color: white;
     margin: 0;
     font-size: 0.95rem;
     line-height: 1.6;
@@ -2955,7 +2955,7 @@ section:first-of-type {
 }
 
 .review-content p {
-    color: #e2e8f0;
+    color: white;
     font-size: 16px;
     line-height: 1.6;
     margin-bottom: 25px;
@@ -2970,7 +2970,7 @@ section:first-of-type {
 }
 
 .review-author span {
-    color: #94a3b8;
+    color: white;
     font-size: 14px;
     font-weight: 400;
 }
