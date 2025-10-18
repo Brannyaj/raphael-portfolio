@@ -64,9 +64,9 @@ body {
 }
 
 .nav-link {
-    color: #1f2937;
+    color: #111827;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 800;
     font-size: 0.95rem;
     transition: all 0.3s ease;
     position: relative;
