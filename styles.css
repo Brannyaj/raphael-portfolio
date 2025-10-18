@@ -1204,8 +1204,9 @@ section:first-of-type {
     color: white;
 }
 
-.video-showcase .section-header p {
-    color: white !important;
+.video-showcase .container {
+    position: relative;
+    z-index: 10;
 }
 
 .video-showcase-grid {
@@ -1219,6 +1220,8 @@ section:first-of-type {
     border-radius: 20px;
     padding: 2.5rem;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 10;
 }
 
 .video-showcase-item {
@@ -1357,8 +1360,9 @@ section:first-of-type {
     color: white;
 }
 
-.portfolio-showcase .section-header p {
-    color: white !important;
+.portfolio-showcase .container {
+    position: relative;
+    z-index: 10;
 }
 
 .portfolio-showcase-grid {
@@ -1366,6 +1370,8 @@ section:first-of-type {
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
     margin-top: 3rem;
+    position: relative;
+    z-index: 10;
 }
 
 .portfolio-showcase-item {
@@ -1611,8 +1617,9 @@ section:first-of-type {
     color: white;
 }
 
-.gallery .section-header p {
-    color: white !important;
+.gallery .container {
+    position: relative;
+    z-index: 10;
 }
 
 .gallery-filter {
@@ -1627,6 +1634,8 @@ section:first-of-type {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
+    position: relative;
+    z-index: 10;
 }
 
 .gallery-item {
@@ -1796,8 +1805,9 @@ section:first-of-type {
     color: white;
 }
 
-.portfolio .section-header p {
-    color: white !important;
+.portfolio .container {
+    position: relative;
+    z-index: 10;
 }
 
 .portfolio-notice {
@@ -1865,6 +1875,8 @@ section:first-of-type {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
+    position: relative;
+    z-index: 10;
 }
 
 .portfolio-item {
@@ -2926,8 +2938,9 @@ section:first-of-type {
     color: white;
 }
 
-.reviews .section-header p {
-    color: rgba(255, 255, 255, 0.9);
+.reviews .container {
+    position: relative;
+    z-index: 10;
 }
 
 .reviews-grid {
@@ -2938,6 +2951,7 @@ section:first-of-type {
     overflow: hidden;
     width: 200%; /* Double width to accommodate duplicated content */
     position: relative;
+    z-index: 10;
 }
 
 .review-item {
