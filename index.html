@@ -551,11 +551,11 @@
         /* Auto-scrolling carousel animation */
         @keyframes autoScroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
+            100% { transform: translateX(-50%); }
         }
         
         .reviews-grid.auto-scroll {
-            animation: autoScroll 60s linear infinite;
+            animation: autoScroll 30s linear infinite;
         }
         
         .reviews-grid.auto-scroll:hover {
@@ -572,8 +572,10 @@
                 const reviews = reviewsGrid.innerHTML;
                 reviewsGrid.innerHTML = reviews + reviews;
                 
-                // Add auto-scroll class
-                reviewsGrid.classList.add('auto-scroll');
+                // Add auto-scroll class after content is duplicated
+                setTimeout(() => {
+                    reviewsGrid.classList.add('auto-scroll');
+                }, 100);
             }
         });
     </script>

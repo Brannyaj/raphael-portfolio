@@ -2874,6 +2874,7 @@ section:first-of-type {
     padding: 20px 0;
     overflow: hidden;
     width: 200%; /* Double width to accommodate duplicated content */
+    position: relative;
 }
 
 .review-item {
