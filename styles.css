@@ -2834,8 +2834,9 @@ section:first-of-type {
 /* Reviews Section Styles */
 .reviews {
     padding: 100px 0;
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
     position: relative;
+    overflow: hidden;
 }
 
 .reviews::before,
@@ -2857,6 +2858,17 @@ section:first-of-type {
 .reviews::after {
     right: 0;
     background: linear-gradient(to left, #0f172a, transparent);
+}
+
+.reviews-background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 5;
+    pointer-events: none;
 }
 
 .reviews .section-header h2 {
