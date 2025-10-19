@@ -595,7 +595,7 @@ function enableEnhancedAnalytics() {
 const pricingData = {
     website: {
         'hosting-platform': {
-            price: 850,
+            price: 750,
             description: 'Website using hosting platforms like GoDaddy, Wix, or WordPress'
         },
         'shopify': {
