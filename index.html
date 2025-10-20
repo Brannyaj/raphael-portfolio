@@ -44,6 +44,24 @@
     <!-- Tawk.to Live Chat -->
     <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    
+    // Ensure chat widget appears immediately and above loading spinner
+    Tawk_API.onLoad = function(){
+        // Set high z-index for chat widget
+        var chatWidget = document.querySelector('#tawk-widget, .tawk-widget, [id*="tawk"]');
+        if (chatWidget) {
+            chatWidget.style.zIndex = '10000';
+        }
+        
+        // Also set z-index for any chat elements that might be created later
+        setTimeout(function() {
+            var chatElements = document.querySelectorAll('#tawk-widget, .tawk-widget, [id*="tawk"]');
+            chatElements.forEach(function(element) {
+                element.style.zIndex = '10000';
+            });
+        }, 1000);
+    };
+    
     (function(){
     var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
     s1.async=true;
@@ -80,6 +98,21 @@
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
+        }
+        
+        /* Ensure Tawk.to chat widget appears above loading spinner */
+        #tawk-widget {
+            z-index: 10000 !important;
+        }
+        
+        /* Tawk.to chat button should be visible immediately */
+        .tawk-widget {
+            z-index: 10000 !important;
+        }
+        
+        /* Ensure chat widget is not hidden by loading spinner */
+        [id*="tawk"] {
+            z-index: 10000 !important;
         }
     </style>
     <!-- Navigation -->
