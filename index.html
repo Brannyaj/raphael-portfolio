@@ -48,37 +48,36 @@
     // Debug: Log when Tawk.to loads
     console.log('🚀 Tawk.to script starting to load...');
     
-    // Ensure chat widget appears immediately and above loading spinner
+    // Hide chat widget initially until page is fully loaded
+    Tawk_API.hideWidget = true;
+    
+    // Ensure chat widget appears after loading spinner is gone
     Tawk_API.onLoad = function(){
         console.log('✅ Tawk.to widget loaded successfully');
         
-        // Set high z-index for chat widget
-        var chatWidget = document.querySelector('#tawk-widget, .tawk-widget, [id*="tawk"]');
-        if (chatWidget) {
-            chatWidget.style.zIndex = '10000';
-            console.log('🎯 Chat widget z-index set to 10000');
-        } else {
-            console.log('⚠️ Chat widget not found, will retry...');
-        }
-        
-        // Also set z-index for any chat elements that might be created later
+        // Wait for loading spinner to disappear before showing chat
         setTimeout(function() {
-            var chatElements = document.querySelectorAll('#tawk-widget, .tawk-widget, [id*="tawk"]');
-            console.log('🔍 Found chat elements:', chatElements.length);
-            chatElements.forEach(function(element) {
-                element.style.zIndex = '10000';
-                console.log('✅ Set z-index for chat element:', element.id || element.className);
-            });
-        }, 1000);
-        
-        // Additional check for chat button
-        setTimeout(function() {
-            var chatButton = document.querySelector('[data-tawk-widget], .tawk-widget-button, #tawk-widget-button');
-            if (chatButton) {
-                chatButton.style.zIndex = '10000';
-                console.log('✅ Chat button found and z-index set');
+            // Check if loading spinner is still visible
+            var loadingSpinner = document.getElementById('loading');
+            if (loadingSpinner && loadingSpinner.style.display !== 'none') {
+                console.log('⏳ Waiting for loading spinner to disappear...');
+                // Wait a bit more
+                setTimeout(function() {
+                    Tawk_API.showWidget();
+                    console.log('💬 Chat widget now visible after loading complete');
+                }, 1000);
             } else {
-                console.log('⚠️ Chat button not found');
+                Tawk_API.showWidget();
+                console.log('💬 Chat widget now visible - loading already complete');
+            }
+        }, 500);
+        
+        // Set high z-index for chat widget when it appears
+        setTimeout(function() {
+            var chatWidget = document.querySelector('#tawk-widget, .tawk-widget, [id*="tawk"]');
+            if (chatWidget) {
+                chatWidget.style.zIndex = '10000';
+                console.log('🎯 Chat widget z-index set to 10000');
             }
         }, 2000);
     };
@@ -707,6 +706,12 @@
                         // Remove spinner completely after fade
                         setTimeout(() => {
                             loading.style.display = 'none';
+                            
+                            // Show Tawk.to chat widget after spinner is gone
+                            if (typeof Tawk_API !== 'undefined' && Tawk_API.showWidget) {
+                                Tawk_API.showWidget();
+                                console.log('💬 Chat widget shown after loading spinner removed');
+                            }
                         }, 500);
                     }, 700); // Wait 700ms for content transition (0.5s) + buffer
                 }
