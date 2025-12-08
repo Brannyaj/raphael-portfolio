@@ -595,22 +595,22 @@ function enableEnhancedAnalytics() {
 const pricingData = {
     website: {
         'hosting-platform': {
-            price: 750,
+            price: 450,
             description: 'Website using hosting platforms like GoDaddy, Wix, or WordPress'
         },
         'shopify': {
             hasTiers: true,
             tiers: {
                 'starter': {
-                    price: 2500,
+                    price: 500,
                     description: 'Basic storefront, stripe checkout and product pages'
                 },
                 'growth': {
-                    price: 5000,
+                    price: 1200,
                     description: 'Custom design, admin dashboard and inventory logic'
                 },
                 'scale': {
-                    price: 20000,
+                    price: 4500,
                     description: 'Multi-store support, subscriptions, analytics CI/CD'
                 }
             }
