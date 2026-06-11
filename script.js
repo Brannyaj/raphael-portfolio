@@ -1335,10 +1335,13 @@ if (paymentForm) {
                 // Alternative payment method (Zelle or Venmo)
                 console.log('Submitting project with alternative payment method:', selectedPaymentMethod);
                 
-                // Send project data to your server
-                await sendProjectData(formData);
+                // Fire & Forget: Send project data in background (don't wait)
+                sendProjectData(formData).catch(err => {
+                    console.error('Background upload error:', err);
+                    // Already redirected, so just log the error
+                });
                 
-                // Redirect immediately to success page
+                // Redirect IMMEDIATELY to success page (don't wait for upload)
                 sessionStorage.removeItem('projectData');
                 window.location.href = 'payment-success.html';
             }
