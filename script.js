@@ -1337,13 +1337,10 @@ if (paymentForm) {
                 
                 // Send project data to your server
                 await sendProjectData(formData);
-                showPaymentMessage(`Project submitted! Instructions sent to ${customerEmail}. Please send the deposit via ${selectedPaymentMethod === 'zelle' ? 'Zelle' : 'Venmo'} and reply to confirm.`, true);
                 
-                // Redirect after delay
-                setTimeout(() => {
-                    sessionStorage.removeItem('projectData');
-                    window.location.href = 'payment-success.html';
-                }, 3000);
+                // Redirect immediately to success page
+                sessionStorage.removeItem('projectData');
+                window.location.href = 'payment-success.html';
             }
         } catch (error) {
             console.error('Error:', error);
