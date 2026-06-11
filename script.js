@@ -1168,6 +1168,12 @@ if (window.location.pathname.includes('payment.html')) {
             // Clear the native input so the same file can be re-selected if needed
             this.value = '';
             renderProofFileList();
+            
+            // Clear validation error when files are added
+            const container = this.closest('.form-group') || this.parentNode;
+            const existing = container.querySelector('.input-error');
+            if (existing) existing.remove();
+            this.classList.remove('invalid-field');
         });
     }
 
@@ -1366,11 +1372,10 @@ async function sendProjectData(formData) {
         form.append('complexity', formData.complexity);
         form.append('paymentMethod', formData.paymentMethod);
         
-        // Add file uploads (proof of payment)
-        const fileInput = document.getElementById('proof-of-payment');
-        if (fileInput && fileInput.files.length > 0) {
-            for (let i = 0; i < fileInput.files.length; i++) {
-                form.append('files', fileInput.files[i]);
+        // Add file uploads (proof of payment) from selectedProofFiles array
+        if (selectedProofFiles && selectedProofFiles.length > 0) {
+            for (let i = 0; i < selectedProofFiles.length; i++) {
+                form.append('files', selectedProofFiles[i]);
             }
         }
         
