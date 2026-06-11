@@ -1037,6 +1037,7 @@ let submitButton;
 let buttonText;
 let spinner;
 let paymentMessage;
+let selectedProofFiles = []; // Array to hold selected files
 
 // Initialize form elements if on payment page
 if (window.location.pathname.includes('payment.html')) {
@@ -1106,9 +1107,6 @@ if (window.location.pathname.includes('payment.html')) {
     const proofFilenameElement = document.getElementById('proof-filename');
     const MAX_FILE_SIZE = 20 * 1024 * 1024; // 20MB in bytes
     const MAX_FILE_COUNT = 20; // Maximum 20 files
-
-    // Array to hold selected files (we manage files client-side to allow removals)
-    let selectedProofFiles = [];
 
     function humanFileSize(size) {
         const i = size === 0 ? 0 : Math.floor(Math.log(size) / Math.log(1024));
