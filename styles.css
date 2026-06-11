@@ -2225,6 +2225,61 @@ section:first-of-type {
     }
 }
 
+/* Payment Method Selection */
+.payment-methods-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.payment-method-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: white;
+    font-weight: 500;
+}
+
+.payment-method-option:hover {
+    border-color: #2563eb;
+    background-color: #f0f9ff;
+}
+
+.payment-method-option input[type="radio"] {
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    accent-color: #2563eb;
+}
+
+.payment-method-option span {
+    color: #1f2937;
+}
+
+/* Alternative Payment Instruction Styling */
+.alt-payment-instruction {
+    margin-top: 16px;
+}
+
+.alt-payment-instruction h4 {
+    margin: 0 0 12px 0;
+    color: #e6eef8;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.alt-payment-instruction p {
+    margin: 8px 0;
+    color: #cbd5e1;
+    font-size: 14px;
+}
+
 /* Cookie Consent Banner */
 .cookie-banner {
     position: fixed;

@@ -16,3 +16,8 @@ compatibility_flags = ["nodejs_compat"]
 #   { pattern = "api.raphaelportfolio.com", zone_name = "raphaelportfolio.com" }
 # ]
 
+# R2 Bucket Binding for File Uploads
+[[r2_buckets]]
+binding = "PAYMENT_PROOFS_BUCKET"
+bucket_name = "payment-proofs"
+

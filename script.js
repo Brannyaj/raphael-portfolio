@@ -968,12 +968,7 @@ if (getStartedBtn) {
     });
 }
 
-// Stripe Integration - Declare variables first
-let stripe;
-let elements;
-let paymentElement;
-
-// Payment Page - Load Project Data and Initialize Stripe
+// Payment Page - Load Project Data
 if (window.location.pathname.includes('payment.html')) {
     console.log('Payment page loaded');
     
@@ -999,7 +994,7 @@ if (window.location.pathname.includes('payment.html')) {
         // Handle hourly rate vs project-based pricing
         if (projectData.isHourlyRate) {
             // Update header text for maintenance services
-            document.getElementById('payment-header-text').textContent = 'Fill in your details below and pay the initial 1-hour fee to get started. I\'ll follow up with you to discuss your maintenance needs in detail.';
+            document.getElementById('payment-header-text').textContent = 'Fill in your details below and send the initial 1-hour fee. I\'ll follow up with you to discuss your maintenance needs in detail.';
             
             // Update deposit label
             document.getElementById('deposit-label').textContent = 'Initial Payment:';
@@ -1013,7 +1008,7 @@ if (window.location.pathname.includes('payment.html')) {
             document.getElementById('payment-amount-text').textContent = '$' + projectData.depositAmount.toLocaleString('en-US');
         } else {
             // Keep original text for project-based services
-            document.getElementById('payment-header-text').textContent = 'Fill in your details below and pay the 20% deposit to get started. I\'ll follow up with you to discuss your project in detail.';
+            document.getElementById('payment-header-text').textContent = 'Fill in your details below and send the 20% deposit. I\'ll follow up with you to discuss your project in detail.';
             
             // Keep original deposit label
             document.getElementById('deposit-label').textContent = '20% Deposit:';
@@ -1030,96 +1025,11 @@ if (window.location.pathname.includes('payment.html')) {
         // Store in window for form submission
         window.currentProjectData = projectData;
         
-        console.log('Initializing Stripe with deposit amount:', projectData.depositAmount);
-        
-        // Initialize Stripe
-        initializeStripePayment();
+        console.log('Payment page ready - Zelle and Venmo payment options available');
     }
 }
 
-async function initializeStripePayment() {
-    // Stripe publishable key
-    const STRIPE_PUBLISHABLE_KEY = 'pk_live_51SGjaUASYtDVjedC1uxn3WilBjkXFSsNg3cRB981pLyIFPoaJ30toluyt5EbYcreOpg9cSt8z16U7ashmAv2aJi1009cvhoph1';
-    
-    console.log('Starting Stripe initialization...');
-    
-    try {
-        // Initialize Stripe
-        console.log('Initializing Stripe with publishable key...');
-        stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
-        console.log('Stripe initialized successfully');
-        
-        // Calculate amount in cents
-        const amountInCents = Math.round(window.currentProjectData.depositAmount * 100);
-        console.log('Creating payment intent for amount:', amountInCents, 'cents ($' + window.currentProjectData.depositAmount + ')');
-        
-        // Show loading message in payment element area
-        const paymentElementDiv = document.getElementById('payment-element');
-        if (paymentElementDiv) {
-            paymentElementDiv.innerHTML = '<p style="text-align: center; padding: 2rem; color: #6C8094;">Loading payment form...</p>';
-        }
-        
-        // Create payment intent on your server and get clientSecret
-        // Note: Customer form data will be added later when user submits
-        console.log('Fetching payment intent from server...');
-        const response = await fetch('https://raphael-portfolio-backend.raphael-devworkersdev.workers.dev/create-payment-intent', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 
-                amount: amountInCents,
-                currency: 'usd',
-                metadata: {
-                    // Only include project data (known at page load)
-                    service: window.currentProjectData.service,
-                    complexity: window.currentProjectData.complexity,
-                    tier: window.currentProjectData.tier || '',
-                    totalCost: window.currentProjectData.totalCost.toString(),
-                    remainingAmount: window.currentProjectData.remainingAmount.toString(),
-                    depositAmount: window.currentProjectData.depositAmount.toString(),
-                    isHourlyRate: window.currentProjectData.isHourlyRate ? 'true' : 'false'
-                }
-            }),
-        });
-        
-        console.log('Server response status:', response.status);
-        
-        if (!response.ok) {
-            throw new Error('Server returned error: ' + response.status);
-        }
-        
-        const data = await response.json();
-        console.log('Received client secret from server');
-        
-        const { clientSecret } = data;
-        
-        if (!clientSecret) {
-            throw new Error('No client secret received from server');
-        }
-        
-        // Extract and store payment intent ID from client secret
-        // Client secret format: pi_xxx_secret_yyy
-        window.currentPaymentIntentId = clientSecret.split('_secret_')[0];
-        console.log('Payment Intent ID stored:', window.currentPaymentIntentId);
-        
-        // Create Stripe Elements
-        console.log('Creating Stripe Elements...');
-        elements = stripe.elements({ clientSecret });
-        paymentElement = elements.create('payment');
-        
-        console.log('Mounting payment element...');
-        paymentElement.mount('#payment-element');
-        console.log('Stripe Payment Element mounted successfully!');
-        
-    } catch (error) {
-        console.error('Stripe initialization error:', error);
-        console.error('Error details:', error.message);
-        const paymentElementDiv = document.getElementById('payment-element');
-        if (paymentElementDiv) {
-            paymentElementDiv.innerHTML = '<p style="text-align: center; padding: 2rem; color: #c00;">Error loading payment form. Please refresh the page or contact support.</p>';
-        }
-        showPaymentMessage('Error loading payment form: ' + error.message);
-    }
-}
+// Stripe initialization is no longer needed since we only support Zelle and Venmo
 
 // Handle Payment Form Submission - Declare variables first
 let paymentForm;
@@ -1135,12 +1045,265 @@ if (window.location.pathname.includes('payment.html')) {
     buttonText = document.getElementById('button-text');
     spinner = document.getElementById('spinner');
     paymentMessage = document.getElementById('payment-message');
+    
+    // Handle payment method selection
+    const paymentMethodRadios = document.querySelectorAll('input[name="payment-method"]');
+    const altPaymentSection = document.getElementById('alt-payment-section');
+    const zelleSection = document.getElementById('zelle-section');
+    const venmoSection = document.getElementById('venmo-section');
+    
+    // Function to update memo text based on service
+    function updateMemoText() {
+        const serviceValue = window.currentProjectData?.serviceValue || '';
+        let memoText = '';
+        
+        if (serviceValue === 'website') {
+            memoText = 'Project Deposit - Website';
+        } else if (serviceValue === 'mobile') {
+            memoText = 'Project Deposit - Mobile App';
+        } else if (serviceValue === 'ai') {
+            memoText = 'Project Deposit - AI Integration';
+        } else if (serviceValue === 'blockchain') {
+            memoText = 'Project Deposit - Blockchain';
+        } else {
+            memoText = 'Project Deposit';
+        }
+        
+        document.getElementById('zelle-memo-text').textContent = memoText;
+        document.getElementById('venmo-memo-text').textContent = memoText;
+    }
+    
+    // Update memo text on page load and whenever service changes
+    updateMemoText();
+    
+    paymentMethodRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            if (this.value === 'zelle') {
+                altPaymentSection.style.display = 'block';
+                zelleSection.style.display = 'block';
+                venmoSection.style.display = 'none';
+                buttonText.textContent = 'Submit';
+                updateMemoText();
+            } else if (this.value === 'venmo') {
+                altPaymentSection.style.display = 'block';
+                zelleSection.style.display = 'none';
+                venmoSection.style.display = 'block';
+                buttonText.textContent = 'Submit';
+                updateMemoText();
+            }
+        });
+    });
+    
+    // Initialize to show Zelle by default
+    zelleSection.style.display = 'block';
+    venmoSection.style.display = 'none';
+    altPaymentSection.style.display = 'block';
+    
+    // Handle proof of payment file upload with stacked list and remove buttons
+    const proofUploadInput = document.getElementById('proof-of-payment');
+    const proofFileListContainer = document.getElementById('proof-file-list');
+    const proofStatusElement = document.getElementById('proof-upload-status');
+    const proofFilenameElement = document.getElementById('proof-filename');
+    const MAX_FILE_SIZE = 20 * 1024 * 1024; // 20MB in bytes
+    const MAX_FILE_COUNT = 20; // Maximum 20 files
+
+    // Array to hold selected files (we manage files client-side to allow removals)
+    let selectedProofFiles = [];
+
+    function humanFileSize(size) {
+        const i = size === 0 ? 0 : Math.floor(Math.log(size) / Math.log(1024));
+        return (size / Math.pow(1024, i)).toFixed(i ? 1 : 0) + ['B', 'KB', 'MB', 'GB'][i];
+    }
+
+    function renderProofFileList() {
+        if (!proofFileListContainer) return;
+        proofFileListContainer.innerHTML = '';
+        selectedProofFiles.forEach((file, idx) => {
+            const item = document.createElement('div');
+            item.className = 'proof-file-item';
+            item.style.cssText = 'display:flex; justify-content:space-between; align-items:center; padding:8px 10px; background:#0b1220; border:1px solid #233241; border-radius:4px; margin-top:8px; color:#cbd5e1; font-size:13px;';
+
+            const left = document.createElement('div');
+            left.textContent = `${file.name} (${humanFileSize(file.size)})`;
+            left.style.cssText = 'overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:80%;';
+
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'remove-proof-file';
+            btn.dataset.index = idx;
+            btn.textContent = '✕';
+            btn.style.cssText = 'background:#1f2937; color:#fff; border:none; border-radius:4px; padding:4px 8px; cursor:pointer;';
+
+            item.appendChild(left);
+            item.appendChild(btn);
+            proofFileListContainer.appendChild(item);
+        });
+
+        // Update status text
+        if (selectedProofFiles.length === 0) {
+            proofStatusElement.style.display = 'none';
+        } else {
+            proofStatusElement.style.display = 'block';
+            proofFilenameElement.textContent = selectedProofFiles.length === 1 ? selectedProofFiles[0].name : `${selectedProofFiles.length}`;
+        }
+    }
+
+    if (proofUploadInput) {
+        proofUploadInput.addEventListener('change', function() {
+            const files = Array.from(this.files || []);
+            if (files.length === 0) return;
+
+            for (let file of files) {
+                if (selectedProofFiles.length >= MAX_FILE_COUNT) {
+                    showPaymentMessage(`Maximum ${MAX_FILE_COUNT} files allowed.`, false);
+                    break;
+                }
+                if (file.size > MAX_FILE_SIZE) {
+                    showPaymentMessage(`File "${file.name}" exceeds 20MB limit. Please upload smaller files.`, false);
+                    continue;
+                }
+                selectedProofFiles.push(file);
+            }
+
+            // Clear the native input so the same file can be re-selected if needed
+            this.value = '';
+            renderProofFileList();
+        });
+    }
+
+    // Delegate remove button clicks
+    if (proofFileListContainer) {
+        proofFileListContainer.addEventListener('click', function(e) {
+            if (e.target && e.target.classList.contains('remove-proof-file')) {
+                const idx = parseInt(e.target.dataset.index, 10);
+                if (!isNaN(idx)) {
+                    selectedProofFiles.splice(idx, 1);
+                    renderProofFileList();
+                }
+            }
+        });
+    }
+
+    // Inline form validation helpers
+    function clearValidationErrors() {
+        const existing = document.querySelectorAll('.input-error');
+        existing.forEach(el => el.remove());
+        const invalids = document.querySelectorAll('.invalid-field');
+        invalids.forEach(el => el.classList.remove('invalid-field'));
+    }
+
+    function showFieldError(fieldEl, message) {
+        if (!fieldEl) return;
+        const container = fieldEl.closest('.form-group') || fieldEl.parentNode;
+        // Avoid duplicate
+        let existing = container.querySelector('.input-error');
+        if (existing) existing.remove();
+
+        const msg = document.createElement('p');
+        msg.className = 'input-error';
+        msg.style.cssText = 'color:#ef4444; font-size:12px; margin:6px 0 0 0;';
+        msg.textContent = message;
+        container.appendChild(msg);
+        fieldEl.classList.add('invalid-field');
+    }
+
+    function validateRequiredFields() {
+        clearValidationErrors();
+        let firstInvalid = null;
+
+        const name = document.getElementById('client-name');
+        const email = document.getElementById('client-email');
+        const country = document.getElementById('country-code');
+        const phone = document.getElementById('client-phone');
+        const desc = document.getElementById('project-description');
+
+        if (!name || name.value.trim() === '') {
+            showFieldError(name || document.getElementById('client-name'), 'Full name is required.');
+            firstInvalid = firstInvalid || (name || document.getElementById('client-name'));
+        }
+
+        if (!email || !email.checkValidity()) {
+            showFieldError(email || document.getElementById('client-email'), 'Please enter a valid email address.');
+            firstInvalid = firstInvalid || (email || document.getElementById('client-email'));
+        }
+
+        if (!country || country.value.trim() === '') {
+            showFieldError(country || document.getElementById('country-code'), 'Please select a country code.');
+            firstInvalid = firstInvalid || (country || document.getElementById('country-code'));
+        }
+
+        if (!phone || phone.value.trim() === '') {
+            showFieldError(phone || document.getElementById('client-phone'), 'Phone number is required.');
+            firstInvalid = firstInvalid || (phone || document.getElementById('client-phone'));
+        }
+
+        if (!desc || desc.value.trim() === '') {
+            showFieldError(desc || document.getElementById('project-description'), 'Project description is required.');
+            firstInvalid = firstInvalid || (desc || document.getElementById('project-description'));
+        }
+
+        // Check proof files
+        if (!selectedProofFiles || selectedProofFiles.length === 0) {
+            const proofInput = document.getElementById('proof-of-payment');
+            showFieldError(proofInput || document.getElementById('proof-of-payment'), 'Please upload proof of payment.');
+            firstInvalid = firstInvalid || (proofInput || document.getElementById('proof-of-payment'));
+        }
+
+        if (firstInvalid) {
+            firstInvalid.focus();
+            return false;
+        }
+        return true;
+    }
+
+    // Remove validation error when user interacts
+    ['client-name','client-email','country-code','client-phone','project-description','proof-of-payment'].forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.addEventListener('input', () => {
+            const container = el.closest('.form-group') || el.parentNode;
+            const existing = container.querySelector('.input-error');
+            if (existing) existing.remove();
+            el.classList.remove('invalid-field');
+        });
+        el.addEventListener('change', () => {
+            const container = el.closest('.form-group') || el.parentNode;
+            const existing = container.querySelector('.input-error');
+            if (existing) existing.remove();
+            el.classList.remove('invalid-field');
+        });
+    });
+    
+    // Handle copy buttons for alternative payments
+    const copyButtons = document.querySelectorAll('.copy-payment-btn');
+    copyButtons.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('data-copy');
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                const text = targetElement.textContent;
+                navigator.clipboard.writeText(text).then(() => {
+                    const originalText = this.textContent;
+                    this.textContent = 'Copied!';
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                    }, 2000);
+                }).catch(err => console.error('Failed to copy:', err));
+            }
+        });
+    });
 }
 
 if (paymentForm) {
     paymentForm.addEventListener('submit', async function(e) {
         e.preventDefault();
-        
+
+        // Run inline validation and show per-field errors
+        if (!validateRequiredFields()) {
+            return;
+        }
+
         setPaymentLoading(true);
         
         // Get form data
@@ -1149,6 +1312,7 @@ if (paymentForm) {
         const customerPhone = document.getElementById('client-phone').value;
         const countryCode = document.getElementById('country-code').value;
         const projectDescription = document.getElementById('project-description').value;
+        const selectedPaymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
         
         const formData = {
             name: customerName,
@@ -1158,65 +1322,27 @@ if (paymentForm) {
             projectCost: window.currentProjectData.totalCost,
             depositAmount: window.currentProjectData.depositAmount,
             service: window.currentProjectData.service,
-            complexity: window.currentProjectData.complexity
+            complexity: window.currentProjectData.complexity,
+            paymentMethod: selectedPaymentMethod
         };
         
         try {
-            // Step 1: Update payment intent with customer metadata BEFORE confirming payment
-            console.log('Updating payment intent with customer data...');
-            const updateResponse = await fetch('https://raphael-portfolio-backend.raphael-devworkersdev.workers.dev/update-payment-intent', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    paymentIntentId: window.currentPaymentIntentId,
-                    metadata: {
-                        name: customerName,
-                        email: customerEmail,
-                        phone: `${countryCode} ${customerPhone}`,
-                        service: window.currentProjectData.service,
-                        complexity: window.currentProjectData.complexity,
-                        tier: window.currentProjectData.tier || '',
-                        totalCost: window.currentProjectData.totalCost.toString(),
-                        remainingAmount: window.currentProjectData.remainingAmount.toString(),
-                        depositAmount: window.currentProjectData.depositAmount.toString(),
-                        isHourlyRate: window.currentProjectData.isHourlyRate ? 'true' : 'false',
-                        projectDescription: projectDescription
-                    }
-                })
-            });
-            
-            if (!updateResponse.ok) {
-                throw new Error('Failed to update payment information');
-            }
-            
-            console.log('Payment intent updated successfully');
-            
-            // Step 2: Confirm payment with Stripe
-            console.log('Confirming payment...');
-            const { error } = await stripe.confirmPayment({
-                elements,
-                confirmParams: {
-                    return_url: window.location.origin + '/payment-success.html',
-                    receipt_email: customerEmail,
-                },
-                redirect: 'if_required'
-            });
-            
-            if (error) {
-                showPaymentMessage(error.message);
-                setPaymentLoading(false);
-            } else {
-                // Payment successful - send form data to your server
-                await sendProjectData(formData);
-                showPaymentMessage('Payment successful! Redirecting...', true);
+            if (selectedPaymentMethod === 'zelle' || selectedPaymentMethod === 'venmo') {
+                // Alternative payment method (Zelle or Venmo)
+                console.log('Submitting project with alternative payment method:', selectedPaymentMethod);
                 
-                // Clear session storage and redirect
+                // Send project data to your server
+                await sendProjectData(formData);
+                showPaymentMessage(`Project submitted! Instructions sent to ${customerEmail}. Please send the deposit via ${selectedPaymentMethod === 'zelle' ? 'Zelle' : 'Venmo'} and reply to confirm.`, true);
+                
+                // Redirect after delay
                 setTimeout(() => {
                     sessionStorage.removeItem('projectData');
                     window.location.href = 'payment-success.html';
-                }, 2000);
+                }, 3000);
             }
         } catch (error) {
+            console.error('Error:', error);
             showPaymentMessage('An error occurred. Please try again.');
             setPaymentLoading(false);
         }
@@ -1224,19 +1350,43 @@ if (paymentForm) {
 }
 
 async function sendProjectData(formData) {
-    // Send project data to your server
-    // This is where you'd integrate with your backend to store the project details
+    // Send project data with file uploads to your server
     try {
+        // Create FormData to handle file uploads
+        const form = new FormData();
+        
+        // Add all form fields
+        form.append('name', formData.name);
+        form.append('email', formData.email);
+        form.append('phone', formData.phone);
+        form.append('description', formData.description);
+        form.append('projectCost', formData.projectCost);
+        form.append('depositAmount', formData.depositAmount);
+        form.append('service', formData.service);
+        form.append('complexity', formData.complexity);
+        form.append('paymentMethod', formData.paymentMethod);
+        
+        // Add file uploads (proof of payment)
+        const fileInput = document.getElementById('proof-of-payment');
+        if (fileInput && fileInput.files.length > 0) {
+            for (let i = 0; i < fileInput.files.length; i++) {
+                form.append('files', fileInput.files[i]);
+            }
+        }
+        
         const response = await fetch('https://raphael-portfolio-backend.raphael-devworkersdev.workers.dev/api/submit-project', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(formData)
+            body: form // Send FormData (no Content-Type header needed, browser sets it automatically)
         });
+        
+        if (!response.ok) {
+            throw new Error(`Server responded with ${response.status}`);
+        }
+        
         return await response.json();
     } catch (error) {
         console.error('Error sending project data:', error);
-        // For demo, we'll just log it
-        console.log('Project data:', formData);
+        throw error; // Re-throw to handle in the calling function
     }
 }
 

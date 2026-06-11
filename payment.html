@@ -25,7 +25,6 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body style="background: #ffffff; margin: 0; padding: 0;">
     <!-- Loading Spinner -->
@@ -181,23 +180,109 @@
                             <span>Amount due now:</span>
                             <strong id="payment-amount-text">$0</strong>
                         </div>
-                        
-                        <!-- Stripe Payment Element -->
+
+                        <!-- Payment Method Selection -->
                         <div class="form-group">
-                            <div id="payment-element">
-                                <!-- Stripe.js will inject the Payment Element here -->
+                            <label>Select Payment Method</label>
+                            <div class="payment-methods-list">
+                                <label class="payment-method-option">
+                                    <input type="radio" name="payment-method" value="zelle" checked>
+                                    <span>Zelle</span>
+                                </label>
+                                <label class="payment-method-option">
+                                    <input type="radio" name="payment-method" value="venmo">
+                                    <span>Venmo</span>
+                                </label>
                             </div>
                         </div>
+
+                        <!-- Payment Instructions -->
+                        <div id="alt-payment-section">
+                            <!-- Zelle Instructions -->
+                            <div id="zelle-section" class="alt-payment-instruction" style="display:none;">
+                                <div style="padding:20px; background:#1e293b; border:1px solid #334155; border-radius:8px; margin-bottom:20px;">
+                                    <h4 style="margin:0 0 16px 0; color:#f1f5f9; font-size:18px; font-weight:700;">Send via Zelle</h4>
+                                    <p style="margin:0 0 8px 0; color:#cbd5e1; font-size:15px; font-weight:600;">Beneficiary:</p>
+                                    <div style="display:flex; align-items:center; gap:8px; background:#0f172a; padding:10px; border-radius:4px; max-width:320px; margin-bottom:12px;">
+                                        <strong style="color:#f1f5f9; font-weight:700;">Raph LLC</strong> 
+                                        <button type="button" class="copy-payment-btn" data-copy="zelle-beneficiary" style="padding:4px 8px; background:#2563eb; color:white; border:none; border-radius:4px; cursor:pointer; font-size:12px; margin-left:8px;">Copy</button>
+                                        <span id="zelle-beneficiary" style="display:none;">Raph LLC</span>
+                                    </div>
+                                    <p style="margin:0 0 12px 0; color:#cbd5e1; font-size:15px; font-weight:600;">Zelle Tag / Email:</p>
+                                    <div style="display:flex; align-items:center; gap:8px; background:#0f172a; padding:10px; border-radius:4px; max-width:320px;">
+                                        <span id="zelle-email" style="color:#60a5fa; font-family:monospace;">raphaelportfolio318@gmail.com</span>
+                                        <button type="button" class="copy-payment-btn" data-copy="zelle-email" style="padding:6px 10px; background:#2563eb; color:white; border:none; border-radius:4px; cursor:pointer; font-size:12px;">Copy</button>
+                                    </div>
+                                    <p style="margin:12px 0 8px 0; font-size:15px; font-weight:600; color:#f1f5f9;">Memo:</p>
+                                    <div id="zelle-memo" style="display:flex; align-items:center; gap:8px; background:#0f172a; padding:10px; border-radius:4px; max-width:400px;">
+                                        <span id="zelle-memo-text" style="color:#cbd5e1; font-size:13px;"></span>
+                                        <button type="button" class="copy-payment-btn" data-copy="zelle-memo-text" style="padding:4px 8px; background:#2563eb; color:white; border:none; border-radius:4px; cursor:pointer; font-size:12px;">Copy</button>
+                                    </div>
+                                    <p style="margin:20px 0 12px 0; font-size:15px; font-weight:600; color:#f1f5f9;">Or scan this Zelle QR code in your banking app:</p>
+                                    <div style="text-align:center; margin-top:8px; padding:0; background:transparent; border:none; display:block; width:100%;">
+                                        <img src="assets/payment/zelle-qr.png" alt="Zelle QR code" style="max-width:320px; width:100%; height:auto; object-fit:contain; display:block; margin:0 auto;"/>
+                                    </div>
+                                    <div style="margin:12px 0 0 0; padding:12px; background:#f8fafc; border-left:3px solid #2563eb; border-radius:4px;">
+                                        <p style="margin:0; font-size:14px; font-weight:600; color:#1e1b4b;">ℹ️ Important Note</p>
+                                        <p style="margin:4px 0 0 0; font-size:13px; color:#374151;">Zelle is only available to individuals in the United States. If you are located outside the US, please reach out to me directly at <strong style="color:#2563eb;">raphaelportfolio318@gmail.com</strong> to discuss project details and alternative payment method for your specific region.</p>
+                                        <p style="margin:8px 0 0 0; font-size:13px; color:#374151;"><strong>Most banks have limits on Zelle transfers.</strong> If your bank has a limit, send the payment in smaller denominations until the full amount is complete. Always include the memo shown above in every transfer.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Venmo Instructions -->
+                            <div id="venmo-section" class="alt-payment-instruction" style="display:none;">
+                                <div style="padding:20px; background:#1e293b; border:1px solid #334155; border-radius:8px; margin-bottom:20px;">
+                                    <h4 style="margin:0 0 16px 0; color:#f1f5f9; font-size:18px; font-weight:700;">Send via Venmo</h4>
+                                    <p style="margin:0 0 8px 0; color:#cbd5e1; font-size:15px; font-weight:600;">Beneficiary:</p>
+                                    <div style="display:flex; align-items:center; gap:8px; background:#0f172a; padding:10px; border-radius:4px; max-width:320px; margin-bottom:12px;">
+                                        <strong style="color:#f1f5f9; font-weight:700;">Raph LLC</strong> 
+                                        <button type="button" class="copy-payment-btn" data-copy="venmo-beneficiary" style="padding:4px 8px; background:#2563eb; color:white; border:none; border-radius:4px; cursor:pointer; font-size:12px; margin-left:8px;">Copy</button>
+                                        <span id="venmo-beneficiary" style="display:none;">Raph LLC</span>
+                                    </div>
+                                    <p style="margin:0 0 8px 0; color:#cbd5e1; font-size:15px; font-weight:600;">Venmo Tag:</p>
+                                    <div style="display:flex; align-items:center; gap:8px; background:#0f172a; padding:10px; border-radius:4px; max-width:320px; margin-bottom:12px;">
+                                        <strong style="color:#60a5fa; font-family:monospace; font-weight:700;">@raphllc</strong> 
+                                        <button type="button" class="copy-payment-btn" data-copy="venmo-handle" style="padding:4px 8px; background:#2563eb; color:white; border:none; border-radius:4px; cursor:pointer; font-size:12px; margin-left:8px;">Copy</button>
+                                        <span id="venmo-handle" style="display:none;">@raphllc</span>
+                                    </div>
+                                    <p style="margin:12px 0 8px 0; font-size:15px; font-weight:600; color:#f1f5f9;">Memo:</p>
+                                    <div id="venmo-memo" style="display:flex; align-items:center; gap:8px; background:#0f172a; padding:10px; border-radius:4px; max-width:400px;">
+                                        <span id="venmo-memo-text" style="color:#cbd5e1; font-size:13px;"></span>
+                                        <button type="button" class="copy-payment-btn" data-copy="venmo-memo-text" style="padding:4px 8px; background:#2563eb; color:white; border:none; border-radius:4px; cursor:pointer; font-size:12px;">Copy</button>
+                                    </div>
+                                    <p style="margin:20px 0 12px 0; font-size:15px; font-weight:600; color:#f1f5f9;">Or scan this Venmo QR code:</p>
+                                    <div style="text-align:center; margin-top:8px; padding:0; background:transparent; border:none; display:block; width:100%;">
+                                        <img src="assets/payment/venmo-qr.png" alt="Venmo QR code" style="max-width:320px; width:100%; height:auto; object-fit:contain; display:block; margin:0 auto;"/>
+                                    </div>
+                                    <div style="margin:12px 0 0 0; padding:12px; background:#f8fafc; border-left:3px solid #2563eb; border-radius:4px;">
+                                        <p style="margin:0; font-size:14px; font-weight:600; color:#1e1b4b;">ℹ️ Important Note</p>
+                                        <p style="margin:4px 0 0 0; font-size:13px; color:#374151;">Venmo is only available to individuals in the United States. If you are located outside the US, please reach out to me directly at <strong style="color:#2563eb;">raphaelportfolio318@gmail.com</strong> to discuss project details and alternative payment method for your specific region.</p>
+                                        <p style="margin:8px 0 0 0; font-size:13px; color:#374151;"><strong>Venmo sometimes does have limits on transfers.</strong> If your Venmo account has a limit, send the payment in smaller denominations until the full amount is complete. Always include the memo shown above in every transfer.</p>
+                                    </div>
+                                </div>
+                            </div>
                         
                         <div id="payment-message" class="payment-message"></div>
+
+                        <!-- Proof of Payment Upload -->
+                        <div class="form-group" style="margin-top:24px; padding:20px; background:#1e293b; border:1px solid #334155; border-radius:8px;">
+                            <label style="font-size:16px; font-weight:700; color:#f1f5f9; display:block; margin-bottom:8px;">Proof of Payment *</label>
+                            <p style="margin:0 0 12px 0; color:#cbd5e1; font-size:14px;">Upload a screenshot or receipt showing your payment confirmation (required)</p>
+                            <p style="margin:0 0 12px 0; font-size:12px; color:#9ca3af;"><strong>Accepted formats:</strong> PNG, JPG, JPEG, PDF</p>
+                            <input type="file" id="proof-of-payment" name="proof-of-payment" accept="image/*,.pdf" multiple required style="display:block; width:100%; padding:10px; background:#0f172a; border:1px solid #334155; border-radius:4px; color:#cbd5e1; font-size:14px; cursor:pointer;">
+                            <div id="proof-file-list" style="margin-top:8px;"></div>
+                            <p style="margin:4px 0 0 0; font-size:12px; color:#9ca3af;">Maximum file size: 20MB | Maximum 20 files</p>
+                            <p id="proof-upload-status" style="margin:8px 0 0 0; font-size:13px; color:#60a5fa; display:none;">File selected: <span id="proof-filename"></span></p>
+                        </div>
                         
                         <div class="form-actions">
                             <button type="submit" class="btn btn-primary btn-submit" id="submit-payment">
-                                <span id="button-text">Pay Deposit & Submit</span>
+                                <span id="button-text">Submit</span>
                                 <div class="spinner hidden" id="spinner"></div>
                             </button>
                             
-                            <a href="pricing.html" class="btn btn-secondary">Back to Pricing</a>
+                            <!-- Back to Pricing button removed per request -->
                         </div>
                     </form>
                 </div>
@@ -206,7 +291,7 @@
     </section>
     </div> <!-- End main-content -->
 
-    <script src="script.js"></script>
+    <script src="script.js?v=2"></script>
     
     <style>
         @keyframes spin {
