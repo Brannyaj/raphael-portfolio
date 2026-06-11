@@ -578,7 +578,7 @@ async function sendProjectCustomerEmail(projectData, resendApiKey) {
             <ul>
               <li>I'll verify your payment receipt</li>
               <li>Review your project requirements in detail</li>
-              <li>Contact you to schedule a consultation call</li>
+              <li>I'll contact via email, call or text at the number provided</li>
               <li>Provide a detailed project timeline and milestones</li>
               <li>Begin work once everything is confirmed</li>
             </ul>
