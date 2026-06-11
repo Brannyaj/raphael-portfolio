@@ -1335,18 +1335,19 @@ if (paymentForm) {
                 // Alternative payment method (Zelle or Venmo)
                 console.log('Submitting project with alternative payment method:', selectedPaymentMethod);
                 
-                // Fire & Forget: Send project data in background (don't wait)
-                sendProjectData(formData).catch(err => {
-                    console.error('Background upload error:', err);
-                    // Already redirected, so just log the error
-                });
+                // Show full-screen loading overlay
+                showFullScreenLoading();
                 
-                // Redirect IMMEDIATELY to success page (don't wait for upload)
+                // Send project data and wait for completion
+                await sendProjectData(formData);
+                
+                // Only redirect after upload completes
                 sessionStorage.removeItem('projectData');
                 window.location.href = 'payment-success.html';
             }
         } catch (error) {
             console.error('Error:', error);
+            hideFullScreenLoading();
             showPaymentMessage('An error occurred. Please try again.');
             setPaymentLoading(false);
         }
@@ -1404,6 +1405,76 @@ function setPaymentLoading(isLoading) {
             buttonText.classList.remove('hidden');
             spinner.classList.add('hidden');
         }
+    }
+}
+
+// Full-screen loading overlay functions
+function showFullScreenLoading() {
+    // Create overlay if it doesn't exist
+    let overlay = document.getElementById('fullscreen-loading-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.id = 'fullscreen-loading-overlay';
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.98);
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        `;
+        
+        // Create spinner
+        const spinner = document.createElement('div');
+        spinner.style.cssText = `
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(59, 130, 246, 0.3);
+            border-top: 4px solid #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        `;
+        
+        // Create submitting text
+        const submittingText = document.createElement('div');
+        submittingText.textContent = 'Submitting...';
+        submittingText.style.cssText = `
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 600;
+            margin-top: 30px;
+            font-family: Inter, sans-serif;
+        `;
+        
+        // Create warning text
+        const warningText = document.createElement('div');
+        warningText.textContent = 'Please do not close the page';
+        warningText.style.cssText = `
+            color: #cbd5e1;
+            font-size: 16px;
+            margin-top: 15px;
+            font-family: Inter, sans-serif;
+        `;
+        
+        overlay.appendChild(spinner);
+        overlay.appendChild(submittingText);
+        overlay.appendChild(warningText);
+        document.body.appendChild(overlay);
+    } else {
+        overlay.style.display = 'flex';
+    }
+}
+
+function hideFullScreenLoading() {
+    const overlay = document.getElementById('fullscreen-loading-overlay');
+    if (overlay) {
+        overlay.style.display = 'none';
     }
 }
 
