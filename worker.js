@@ -376,7 +376,7 @@ async function sendCustomerConfirmation(customerEmail, metadata, amount, resendA
           </div>
           
           <p>If you have any questions in the meantime, feel free to reply to this email or contact me at:</p>
-          <p><a href="mailto:raphaelagbo279@gmail.com">raphaelagbo279@gmail.com</a><br>
+          <p><a href="mailto:raphaelportfolio318@gmail.com">raphaelportfolio318@gmail.com</a><br>
           <a href="tel:+14157411433">+1 415-741-1433</a></p>
           
           <p>Looking forward to bringing your project to life!</p>
