@@ -402,6 +402,7 @@ async function sendCustomerConfirmation(customerEmail, metadata, amount, resendA
     body: JSON.stringify({
       from: 'Raphael <noreply@raphaelportfolio.com>',
       to: [customerEmail],
+      reply_to: ['raphaelportfolio318@gmail.com'],
       subject: 'Project details received',
       html: emailHtml,
     }),
@@ -615,6 +616,7 @@ async function sendProjectCustomerEmail(projectData, resendApiKey) {
     body: JSON.stringify({
       from: 'Raphael <noreply@raphaelportfolio.com>',
       to: [projectData.email],
+      reply_to: ['raphaelportfolio318@gmail.com'],
       subject: `Project Submission Received - ${projectData.service}`,
       html: emailHtml,
     }),
